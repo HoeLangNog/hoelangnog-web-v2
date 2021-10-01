@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 /*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
 
 /* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
@@ -261,3 +262,29 @@ textarea {
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.centering-grid {
+  display: grid;
+  place-items: center;
+}
+
+.fadein {
+  -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein .5s; /* Firefox < 16 */
+  -ms-animation: fadein .5s; /* Internet Explorer */
+  -o-animation: fadein .5s; /* Opera < 12.1 */
+  animation: fadein .5s;
+}
+
+
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to {
+    opacity: 1;
+  }
+}

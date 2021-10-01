@@ -17,18 +17,59 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
+  <link rel="stylesheet" href="css/timerpage/timer.css">
+  <script async src="https://kit.fontawesome.com/41c28e8a2f.js" crossorigin="anonymous"></script>
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
 
+  <div class="overlay-buttons fadein">
+    <i class="fas fa-cog"></i>
+    <i class="fas fa-th-list" id="lessons"></i>
+  </div>
+
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <div class="timer-main centering-grid">
+    <div>
+      <h2 id="timer-text" class="fadein">00:00:00</h2>
+
+      <svg
+        class="progress-ring fadein"
+        id="ring-svg"
+        width="308"
+        height="308">
+        <mask id="mask">
+          <circle
+            class="ring-position"
+            stroke="#ffffff"
+            stroke-width="4"
+            fill="transparent"
+            r="150"
+            cx="155"
+            cy="155"/>
+        </mask>
+        <circle
+          id="circle"
+          class="progress-ring__circle"
+          stroke="#ffa200"
+          stroke-width="4"
+          fill="transparent"
+          r="150"
+          cx="155"
+          cy="155"/>
+        <g mask="url(#mask)" class="time-lines" stroke="red" stroke-linecap="square">a</g>
+
+
+
+      </svg>
+    </div>
+  </div>
+
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/timer/timer.ts"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
