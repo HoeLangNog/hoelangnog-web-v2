@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hoe Lang Nog?</title>
+  <title>Calender</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,62 +14,29 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/timerpage/timer.css">
+  <link rel="stylesheet" href="css/calenderpage/calender.css">
   <script async src="https://kit.fontawesome.com/41c28e8a2f.js" crossorigin="anonymous"></script>
   <meta name="theme-color" content="#fafafa">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tui-calendar/1.14.1/tui-calendar.css" integrity="sha512-csBYWwRGGFKP7lXPlEZJ7PPCW0zw5q8SHmML5UTvdXp9rakTEtDAHt97PH6l5fudtCYKiNLZ/X7DFncDefjZaQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <body>
 
-  <div class="overlay-buttons fadein">
-    <i class="fas fa-cog"></i>
-    <i class="fas fa-th-list" id="lessons"></i>
-  </div>
-
-  <!-- Add your site or application content here -->
-  <div class="timer-main centering-grid">
-    <div>
-      <h2 id="timer-text" class="fadein">00:00:00</h2>
-
-      <svg
-        class="progress-ring fadein"
-        id="ring-svg"
-        width="308"
-        height="308">
-        <mask id="mask">
-          <circle
-            class="ring-position"
-            stroke="#ffffff"
-            stroke-width="4"
-            fill="transparent"
-            r="150"
-            cx="155"
-            cy="155"/>
-        </mask>
-        <circle
-          id="circle"
-          class="progress-ring__circle"
-          stroke="#ffa200"
-          stroke-width="4"
-          fill="transparent"
-          r="150"
-          cx="155"
-          cy="155"/>
-        <g mask="url(#mask)" class="time-lines" stroke="red" stroke-linecap="square">a</g>
-
-
-
-      </svg>
+  <div class="calender-container">
+    <div class="menu">
+      <button class="menu-btn" id="calender-today">Today</button>
+      <button class="menu-btn" id="calender-prev"><</button>
+      <button class="menu-btn" id="calender-next">></button>
+      <span class="menu-date-text">2021-10 - Week 24</span>
     </div>
+    <div id="calendar"></div>
   </div>
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/timer/timer.ts"></script>
+  <script src="js/calender/calender.ts"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
