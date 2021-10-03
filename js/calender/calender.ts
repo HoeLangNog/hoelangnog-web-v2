@@ -15,6 +15,8 @@ function getRandomInt(max) {
 function loadSchedule(groupCode){
   let curWeek = moment().format('w') - 2;
   let nextWeek = moment().format('w') - 1;
+  let prevWeek = moment().format('w') - 3;
+  console.log(prevWeek);
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+curWeek)
     .then(response => {
       let resObject: any = response.data;
@@ -71,6 +73,34 @@ function loadSchedule(groupCode){
         });
       });
     });
+  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week=" + prevWeek)
+    .then(response => {
+      let resObject: any = response.data;
+      resObject.forEach((item) => {
+        let id = getRandomInt(300);
+        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+
+        lessons.push({
+          id: id+'',
+          calendarId: id+'',
+          category: 'time',
+          bgColor: "#0382b2",
+          color: "#fff",
+          borderColor: "#696969",
+          title: item.name,
+          body: 'none',
+          start: start,
+          end: end,
+          isAllDay: false,
+          raw: {
+            location: "RN219", //TODO item.location
+            attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
+            teachers: ["mg32"], //TODO item.teachers
+          }
+        });
+      });
+    });
 }
 loadSchedule("TTB4-SSD2C");
 
@@ -87,6 +117,7 @@ let calendar = new Calendar('#calendar', {
   useDetailPopup: true,
   usageStatistics: false,
 });
+
 
 function setSchedules(lessons){
   calendar.clear(true);
@@ -121,8 +152,9 @@ let nextBtn = document.getElementById("calender-next");
 function goBack(execute){
   let today = new Date();
   let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  prevweek.setTime(prevweek.getTime() - 604800000)
 
-  if(prevweek.getTime() < calendar.getDateRangeEnd().toDate().getTime()){
+  if(prevweek.getTime() < calendar.getDateRangeStart().toDate().getTime()){
     if (!execute) return;
     calendar.prev();
     prevBtn.classList.add("disabled");
@@ -134,6 +166,8 @@ goBack(false);
 function goForward(execute){
   let today = new Date();
   let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+
+
 
   if(nextweek.getTime() > calendar.getDateRangeEnd().toDate().getTime()){
     if (!execute) return;
