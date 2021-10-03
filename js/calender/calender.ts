@@ -1,4 +1,4 @@
-import {getCalenderTemplate} from './calenderUtils';
+import {getCalenderTemplate, WEEKLY_CUSTOM_THEME} from './calenderUtils';
 import Calendar from 'tui-calendar';
 // @ts-ignore
 import moment from 'moment';
@@ -116,6 +116,7 @@ let calendar = new Calendar('#calendar', {
   useCreationPopup: false,
   useDetailPopup: true,
   usageStatistics: false,
+  theme: WEEKLY_CUSTOM_THEME,
 });
 
 

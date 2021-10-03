@@ -54,6 +54,8 @@ html, body{
 
 .calender-container{
   padding: 50px;
+  font-family: "Noto Sans Display", sans-serif;
+
 }
 
 .schedule-item-text{
@@ -63,4 +65,8 @@ html, body{
 
 .tui-view-11{
   height: calc(80vh - 120px)!important;
+}
+
+.tui-full-calendar-layout {
+  background-color: #202020 !important;
 }
