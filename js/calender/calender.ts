@@ -13,7 +13,9 @@ function getRandomInt(max) {
 }
 
 function loadSchedule(groupCode){
-  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule")
+  let curWeek = moment().format('w') - 2;
+  let nextWeek = moment().format('w') - 1;
+  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+curWeek)
     .then(response => {
       let resObject: any = response.data;
       resObject.forEach((item) => {
@@ -41,14 +43,13 @@ function loadSchedule(groupCode){
         });
       });
     });
-  let nextWeek = moment().add("+1week").format('w');
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+nextWeek)
     .then(response => {
       let resObject: any = response.data;
       resObject.forEach((item) => {
         let id = getRandomInt(300);
-        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTH:mm:ss");
-        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTH:mm:ss");
+        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
 
         lessons.push({
           id: id+'',
@@ -58,12 +59,13 @@ function loadSchedule(groupCode){
           color: "#fff",
           borderColor: "#696969",
           title: item.name,
+          body: 'none',
           start: start,
           end: end,
           isAllDay: false,
-          location: "RN219", //TODO item.location
-          attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
           raw: {
+            location: "RN219", //TODO item.location
+            attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
             teachers: ["mg32"], //TODO item.teachers
           }
         });
@@ -87,50 +89,70 @@ let calendar = new Calendar('#calendar', {
 });
 
 function setSchedules(lessons){
-  if(lessons.length == 0){
-    setTimeout(() => {
-      setSchedules(lessons);
-    }, 100);
-  }else{
-    calendar.createSchedules(lessons);
-  }
+  calendar.clear(true);
+  calendar.createSchedules(lessons);
+  setTimeout(() => {
+    setSchedules(lessons);
+  }, 1000);
 }
 setSchedules(lessons);
 
-calendar.createSchedules([
-  {
-    id: '1',
-    calendarId: '1',
-    category: 'task',
-    bgColor: "#137c00",
-    color: "#fff",
-    borderColor: "#696969",
-    title: 'Huiswerk',
-    start: '2021-10-01',
-    end: '2021-10-01',
-    raw: {
-      vak: "NL",
-      link: "https://example.com/",
-    }
-  }
-]);
+// TASK template
+// calendar.createSchedules([
+//   {
+//     id: '1',
+//     calendarId: '1',
+//     category: 'task',
+//     bgColor: "#137c00",
+//     color: "#fff",
+//     borderColor: "#696969",
+//     title: 'Huiswerk',
+//     start: '2021-10-01',
+//     end: '2021-10-01',
+//     raw: {
+//       vak: "NL",
+//       link: "https://example.com/",
+//     }
+//   }
+// ]);
 
-$('#calender-today').click(() => {
-  calendar.today();
-});
-$('#calender-prev').click(() => {
+let prevBtn = document.getElementById("calender-prev");
+let nextBtn = document.getElementById("calender-next");
+function goBack(execute){
   let today = new Date();
-  let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+  let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   if(prevweek.getTime() < calendar.getDateRangeEnd().toDate().getTime()){
+    if (!execute) return;
     calendar.prev();
+    prevBtn.classList.add("disabled");
+    nextBtn.classList.remove("disabled");
   }
-});
-$('#calender-next').click(() => {
+
+}
+goBack(false);
+function goForward(execute){
   let today = new Date();
   let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
 
   if(nextweek.getTime() > calendar.getDateRangeEnd().toDate().getTime()){
+    if (!execute) return;
     calendar.next();
+    nextBtn.classList.add("disabled");
+    prevBtn.classList.remove("disabled");
   }
+
+}
+goForward(false);
+
+$('#calender-today').click(() => {
+  calendar.today();
+  nextBtn.classList.remove("disabled");
+  prevBtn.classList.add("disabled");
+});
+$('#calender-prev').click(() => {
+  goBack(true);
+});
+$('#calender-next').click(() => {
+  goForward(true);
 });

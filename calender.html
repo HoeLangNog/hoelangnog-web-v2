@@ -17,18 +17,40 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/calenderpage/calender.css">
+  <link rel="stylesheet" href="css/navbar.css">
   <script async src="https://kit.fontawesome.com/41c28e8a2f.js" crossorigin="anonymous"></script>
   <meta name="theme-color" content="#fafafa">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tui-calendar/1.14.1/tui-calendar.css" integrity="sha512-csBYWwRGGFKP7lXPlEZJ7PPCW0zw5q8SHmML5UTvdXp9rakTEtDAHt97PH6l5fudtCYKiNLZ/X7DFncDefjZaQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">Xedule Tools</a>
+      </div>
+      <div class="nav navbar-nav navbar-right">
+        <a href="./index.html"><span>Home</span></a>
+        <a href="./"><span>Lokalen</span></a>
+        <a href="./calender.html" class="active"><span>Calender</span></a>
+      </div>
+    </div>
+  </nav>
+
   <div class="calender-container">
     <div class="menu">
-      <button class="menu-btn" id="calender-today">Today</button>
-      <button class="menu-btn" id="calender-prev"><</button>
-      <button class="menu-btn" id="calender-next">></button>
-      <span class="menu-date-text">2021-10 - Week 24</span>
+      <div class="selectors">
+        <select name="" id="">
+          <option value="">1</option>
+          <option value="">2</option>
+        </select>
+      </div>
+      <div class="date">
+        <div class="menu-date-text">2021-10 - Week 24</div>
+        <button class="menu-btn btn-cirle disabled" id="calender-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="menu-btn btn-cirle" id="calender-next"><i class="fas fa-chevron-right"></i></button>
+        <button class="menu-btn" id="calender-today">Today</button>
+      </div>
     </div>
     <div id="calendar"></div>
   </div>
