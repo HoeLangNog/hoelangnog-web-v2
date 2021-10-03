@@ -1,5 +1,5 @@
 import {setProgress, formatTime} from './timerutils'
-import * as axiosa from 'axios';
+import * as axiosa from "axios";
 
 const axios = axiosa.default;
 
