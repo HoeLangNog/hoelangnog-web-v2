@@ -1,0 +1,66 @@
+@import "../main.css";
+
+html, body{
+  background-color: #222222;
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  .date{
+    display: flex;
+  }
+}
+
+.menu-btn{
+  height: 30px;
+  background-color: #222222;
+  border: 1px solid white;
+  color: white;
+  border-radius: 50px;
+  padding: 5px 10px;
+  transition: all 200ms;
+  margin-right: 5px;
+  &.btn-cirle{
+    width: 30px;
+  }
+  i{
+    margin-left: -2px;
+    margin-top: 1px;
+  }
+  &:hover{
+    border-color: #e1e1e1;
+    background-color: rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+  &.disabled{
+    color: #868686;
+    &:hover{
+      border-color: #e1e1e1;
+      background-color: rgba(255,255,255,0.02);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.menu-date-text{
+  margin-right: 5px;
+  color: white;
+  font-size: 20px;
+}
+
+.calender-container{
+  padding: 50px;
+}
+
+.schedule-item-text{
+  width: 15px;
+  height: 15px;
+}
+
+.tui-view-11{
+  height: calc(80vh - 120px)!important;
+}
