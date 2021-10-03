@@ -53,7 +53,7 @@ export function formatTime (date, format, utc) {
 
   var T = H < 12 ? "AM" : "PM";
   format = format.replace(/(^|[^\\])TT+/g, "$1" + T);
-  format = format.replace(/(^|[^\\])T/g, "$1" + T.charAt(0));
+  // format = format.replace(/(^|[^\\])T/g, "$1" + T.charAt(0));
 
   var t = T.toLowerCase();
   format = format.replace(/(^|[^\\])tt+/g, "$1" + t);

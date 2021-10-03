@@ -1,8 +1,8 @@
-@import "../main.css";
+@import "../main.scss";
 
 .timer-main {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 60px);
   background-color: #222222;
 }
 
