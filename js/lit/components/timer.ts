@@ -20,6 +20,7 @@ export class TimerElement extends LitElement {
       text-align: center;
       font-size: 65px;
       transition: color 200ms linear;
+      top: -60px;
     }
     .progress-ring {
       position: absolute;
