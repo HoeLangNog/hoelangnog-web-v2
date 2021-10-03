@@ -1,0 +1,47 @@
+.navbar {
+  background-color: #333333;
+}
+
+.container-fluid {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+.container-fluid .navbar-header {
+  padding: 12px 20px;
+}
+.container-fluid .navbar-header .navbar-brand {
+  font-size: 25px;
+  color: white;
+  text-decoration: none;
+  transition: color 100ms linear;
+}
+.container-fluid .navbar-header .navbar-brand:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+}
+.container-fluid .navbar-nav {
+  width: 20vw;
+  display: flex;
+  justify-content: right;
+}
+.container-fluid .navbar-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  transition: background-color 100ms linear;
+}
+.container-fluid .navbar-nav a span {
+  font-size: 20px;
+}
+.container-fluid .navbar-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.container-fluid .navbar-nav .active {
+  background-color: rgba(32, 138, 0, 0.5);
+}
+.container-fluid .navbar-nav .active:hover {
+  background-color: rgba(32, 138, 0, 0.8);
+}
+
+/*# sourceMappingURL=navbar.css.map */

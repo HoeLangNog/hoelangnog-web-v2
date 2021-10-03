@@ -1,14 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 /*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+
 /* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+
 html {
   color: #222;
   font-size: 1em;
@@ -25,6 +29,7 @@ html {
  *
  * Customize the background color to match your design.
  */
+
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
@@ -38,6 +43,7 @@ html {
 /*
  * A better looking default horizontal rule
  */
+
 hr {
   display: block;
   height: 1px;
@@ -52,6 +58,7 @@ hr {
  * images, videos and the bottom of their containers:
  * https://github.com/h5bp/html5-boilerplate/issues/440
  */
+
 audio,
 canvas,
 iframe,
@@ -64,6 +71,7 @@ video {
 /*
  * Remove default fieldset styles.
  */
+
 fieldset {
   border: 0;
   margin: 0;
@@ -73,6 +81,7 @@ fieldset {
 /*
  * Allow only vertical resizing of textareas.
  */
+
 textarea {
   resize: vertical;
 }
@@ -80,12 +89,15 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
 /*
  * Hide visually and from screen readers
  */
+
 .hidden,
 [hidden] {
   display: none !important;
@@ -99,6 +111,7 @@ textarea {
  *    causes content to wrap 1 word per line:
  *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
+
 .sr-only {
   border: 0;
   clip: rect(0, 0, 0, 0);
@@ -117,6 +130,7 @@ textarea {
  * to be focusable when navigated to via the keyboard:
  * https://www.drupal.org/node/897638
  */
+
 .sr-only.focusable:active,
 .sr-only.focusable:focus {
   clip: auto;
@@ -131,6 +145,7 @@ textarea {
 /*
  * Hide visually and from screen readers, but maintain layout
  */
+
 .invisible {
   visibility: hidden;
 }
@@ -146,6 +161,7 @@ textarea {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
+
 .clearfix::before,
 .clearfix::after {
   content: " ";
@@ -161,21 +177,28 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
+
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
 }
-@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
+
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
    https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
+
 @media print {
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     background: #fff !important;
     color: #000 !important;
     /* Black prints faster */
@@ -184,7 +207,7 @@ textarea {
   }
 
   a,
-a:visited {
+  a:visited {
     text-decoration: underline;
   }
 
@@ -201,7 +224,7 @@ a:visited {
    * or use the `javascript:` pseudo protocol
    */
   a[href^="#"]::after,
-a[href^="javascript:"]::after {
+  a[href^="javascript:"]::after {
     content: "";
   }
 
@@ -210,7 +233,7 @@ a[href^="javascript:"]::after {
   }
 
   pre,
-blockquote {
+  blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -224,22 +247,23 @@ blockquote {
   }
 
   tr,
-img {
+  img {
     page-break-inside: avoid;
   }
 
   p,
-h2,
-h3 {
+  h2,
+  h3 {
     orphans: 3;
     widows: 3;
   }
 
   h2,
-h3 {
+  h3 {
     page-break-after: avoid;
   }
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -251,25 +275,20 @@ h3 {
 }
 
 .fadein {
-  -webkit-animation: fadein 0.5s;
-  /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0.5s;
-  /* Firefox < 16 */
-  -ms-animation: fadein 0.5s;
-  /* Internet Explorer */
-  -o-animation: fadein 0.5s;
-  /* Opera < 12.1 */
-  animation: fadein 0.5s;
+  -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein .5s; /* Firefox < 16 */
+  -ms-animation: fadein .5s; /* Internet Explorer */
+  -o-animation: fadein .5s; /* Opera < 12.1 */
+  animation: fadein .5s;
 }
 
 @keyframes fadein {
-  from {
-    opacity: 0;
-  }
+  from { opacity: 0; }
   to {
     opacity: 1;
   }
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -289,5 +308,3 @@ h3 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
-/*# sourceMappingURL=main.css.map */
