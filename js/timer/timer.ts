@@ -1,13 +1,8 @@
 import {setProgress, formatTime} from './timerutils'
-import * as axiosa from 'axios'
+import * as axiosa from 'axios';
 
 const axios = axiosa.default;
 
-let textElement = document.getElementById("timer-text");
-let gElement = document.getElementsByClassName("time-lines").item(0);
-
-//So gelement is actually compiled
-gElement.innerHTML = "";
 
 //Variables used by timers globally
 let startTime;
@@ -30,25 +25,40 @@ function tickTimer() {
 
   let difference = (endDate.getTime()) - (currentTime - currentDate.getTimezoneOffset() * 60000);
 
+  let timers = document.getElementsByTagName("hln-timer");
   if (difference < 0) {
-    textElement.innerText = "Geen les!";
+    for (let i = 0; i < timers.length; i++) {
+      let element = timers.item(i);
+      element.setAttribute("time", "Geen les!");
+      element.setAttribute("progress", "100")
+    }
+    waitForNextTick();
     return;
+
   }
 
   let timeToDisplay = new Date(difference);
 
-  writeNumber(timeToDisplay);
+  let timeText = formatTime(timeToDisplay, "HH:mm:ss", true)
 
   let totalTime = endDate.getTime() - startTime.getTime();
   let percent = 100 - (((totalTime - difference) / totalTime) * 100);
+  for (let i = 0; i < timers.length; i++) {
+    let element = timers.item(i);
+    element.setAttribute("time", timeText);
+    element.setAttribute("progress", `${percent}`);
+  }
 
-  setProgress(percent);
 
+  waitForNextTick();
+}
+
+function waitForNextTick() {
   setTimeout(() => {
     tickTimer();
   }, 100);
 }
 
 function writeNumber(date: Date) {
-  textElement.innerText = formatTime(date, "HH:mm:ss", true)
+  // textElement.innerText = formatTime(date, "HH:mm:ss", true)
 }

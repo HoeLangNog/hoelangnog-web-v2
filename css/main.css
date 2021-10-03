@@ -280,7 +280,11 @@ textarea {
   animation: fadein .5s;
 }
 
-
+.hidden-by-mouse {
+  opacity: 0;
+  transition: 0.3s;
+  display: none;
+}
 
 @keyframes fadein {
   from { opacity: 0; }
