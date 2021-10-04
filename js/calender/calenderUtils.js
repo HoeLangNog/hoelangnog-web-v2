@@ -93,20 +93,20 @@ export function getCalenderTemplate(){
         day = "Zon";
       }
 
-      return dayDate+ ' ' +day;
+      return '<span style="color: white;">' +dayDate+ '</span>'+' <span style="color: white;">' +day+ '</span>';
     },
     dayGridTitle: function (type){
       let title = '';
 
       switch(type) {
         case 'milestone':
-          title = '<span class="tui-full-calendar-left-content">Mijlpaal</span>';
+          title = '<span class="tui-full-calendar-left-content" style="color: white;">Mijlpaal</span>';
           break;
         case 'task':
-          title = '<span class="tui-full-calendar-left-content">Taken</span>';
+          title = '<span class="tui-full-calendar-left-content" style="color: white;">Taken</span>';
           break;
         case 'allday':
-          title = '<span class="tui-full-calendar-left-content">Hele Dag</span>';
+          title = '<span class="tui-full-calendar-left-content" style="color: white;">Hele Dag</span>';
           break;
       }
 
@@ -175,21 +175,16 @@ export let WEEKLY_CUSTOM_THEME = {
   'week.currentTime.fontSize': '12px',
   'week.currentTime.fontWeight': 'bold',
 
-  'week.pastTime.color': '#808080',
+  'week.pastTime.color': '#a3a3a3',
   'week.pastTime.fontWeight': 'normal',
 
-  'week.futureTime.color': '#333',
+  'week.futureTime.color': '#ffffff',
   'week.futureTime.fontWeight': 'normal',
 
-  'week.currentTimeLinePast.border': '1px solid rgba(19, 93, 230, 0.3)',
+  'week.currentTimeLinePast.border': '2px solid rgba(19, 93, 230, 0.3)',
   'week.currentTimeLineBullet.backgroundColor': '#135de6',
-  'week.currentTimeLineToday.border': '1px solid #135de6',
-  'week.currentTimeLineFuture.border': '1px solid #135de6',
-
-  // week creation guide style
-  'week.creationGuide.color': '#135de6',
-  'week.creationGuide.fontSize': '12px',
-  'week.creationGuide.fontWeight': 'bold',
+  'week.currentTimeLineToday.border': '2px solid #135de6',
+  'week.currentTimeLineFuture.border': '2px solid #135de6',
 
   // week daygrid schedule style
   'week.dayGridSchedule.borderRadius': '0',

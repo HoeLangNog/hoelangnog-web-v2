@@ -13,10 +13,9 @@ function getRandomInt(max) {
 }
 
 function loadSchedule(groupCode){
-  let curWeek = moment().format('w') - 2;
-  let nextWeek = moment().format('w') - 1;
-  let prevWeek = moment().format('w') - 3;
-  console.log(prevWeek);
+  let curWeek = moment().format('w') - 1;
+  let nextWeek = moment().format('w');
+  let prevWeek = moment().format('w') - 2;
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+curWeek)
     .then(response => {
       let resObject: any = response.data;
@@ -118,7 +117,6 @@ let calendar = new Calendar('#calendar', {
   usageStatistics: false,
   theme: WEEKLY_CUSTOM_THEME,
 });
-
 
 function setSchedules(lessons){
   calendar.clear(true);

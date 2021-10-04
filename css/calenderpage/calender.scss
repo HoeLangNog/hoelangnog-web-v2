@@ -13,6 +13,34 @@ html, body{
   .date{
     display: flex;
   }
+  .group-selector{
+    width: 150px;
+  }
+  input, select{
+    color: whitesmoke;
+    outline: none;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #5a5a5a;
+    border: transparent solid 2px;
+    cursor: pointer;
+    &:focus {
+      border: #ffa200 solid 2px;
+    }
+
+    &[type="button"] {
+      padding: 15px;
+      border-radius: 400px;
+      width: 100%;
+      background-color: #ffa200;
+      color: #000000;
+      transition: background-color .2s linear;
+
+      &:hover {
+        background-color: #ffb03e;
+      }
+    }
+  }
 }
 
 .menu-btn{
