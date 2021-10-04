@@ -8,7 +8,7 @@ const axios = axiosa.default;
 const selector = $("#calender-group-select");
 
 function loadGroups(){
-  axios.get("https://api.hoelangnog.xyz/groups/")
+  axios.get("https://api.hoelangnog.xyz/groups?visible")
     .then(response => {
       let resObject: any = response.data;
       let storedGroup = "";
@@ -17,7 +17,6 @@ function loadGroups(){
       }
       selector.empty();
       resObject.forEach((group) => {
-        if(group.visible == false)return;
         if(storedGroup == group.code){
           selector.append('<option value="'+group.code+'" selected>'+group.code+'</option>');
         }else{
