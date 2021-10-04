@@ -1,8 +1,9 @@
 import {getCalenderTemplate, WEEKLY_CUSTOM_THEME} from './calenderUtils';
+// @ts-ignore
 import Calendar from 'tui-calendar';
 // @ts-ignore
 import moment from 'moment';
-import $ from "jquery";
+// @ts-ignore
 import * as axiosa from 'axios'
 
 const axios = axiosa.default;
@@ -13,12 +14,19 @@ function getRandomInt(max) {
 }
 
 function loadSchedule(groupCode){
+  lessons = [];
   let curWeek = moment().format('w') - 1;
   let nextWeek = moment().format('w');
   let prevWeek = moment().format('w') - 2;
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+curWeek)
-    .then(response => {
+    .catch(function (error) {
+      calendar.clear(true);
+      lessons = [];
+    }).then(response => {
+      if(response == null) return;
       let resObject: any = response.data;
+      if(resObject == null) return;
+
       resObject.forEach((item) => {
         let id = getRandomInt(300);
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
@@ -43,10 +51,19 @@ function loadSchedule(groupCode){
           }
         });
       });
+
+      calendar.clear(true);
+      calendar.createSchedules(lessons);
     });
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+nextWeek)
-    .then(response => {
+    .catch(function (error) {
+      calendar.clear(true);
+      lessons = [];
+    }).then(response => {
+      if(response == null) return;
       let resObject: any = response.data;
+      if(resObject == null) return;
+
       resObject.forEach((item) => {
         let id = getRandomInt(300);
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
@@ -71,10 +88,19 @@ function loadSchedule(groupCode){
           }
         });
       });
+
+      calendar.clear(true);
+      calendar.createSchedules(lessons);
     });
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week=" + prevWeek)
-    .then(response => {
+    .catch(function (error) {
+      calendar.clear(true);
+      lessons = [];
+    }).then(response => {
+      if(response == null) return;
       let resObject: any = response.data;
+      if(resObject == null) return;
+
       resObject.forEach((item) => {
         let id = getRandomInt(300);
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
@@ -99,9 +125,11 @@ function loadSchedule(groupCode){
           }
         });
       });
+
+      calendar.clear(true);
+      calendar.createSchedules(lessons);
     });
 }
-loadSchedule("TTB4-SSD2C");
 
 let calendar = new Calendar('#calendar', {
   defaultView: 'week',
@@ -118,14 +146,15 @@ let calendar = new Calendar('#calendar', {
   theme: WEEKLY_CUSTOM_THEME,
 });
 
-function setSchedules(lessons){
-  calendar.clear(true);
-  calendar.createSchedules(lessons);
-  setTimeout(() => {
-    setSchedules(lessons);
-  }, 1000);
+if(localStorage.getItem("group") != null){
+  loadSchedule(localStorage.getItem("group"));
 }
-setSchedules(lessons);
+
+$('#calender-group-select').on('change', function (e) {
+  let value = $('#calender-group-select').val();
+  localStorage.setItem('group', value);
+  loadSchedule(value);
+});
 
 // TASK template
 // calendar.createSchedules([
@@ -166,8 +195,6 @@ function goForward(execute){
   let today = new Date();
   let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
 
-
-
   if(nextweek.getTime() > calendar.getDateRangeEnd().toDate().getTime()){
     if (!execute) return;
     calendar.next();
@@ -183,9 +210,11 @@ $('#calender-today').click(() => {
   nextBtn.classList.remove("disabled");
   prevBtn.classList.add("disabled");
 });
+
 $('#calender-prev').click(() => {
   goBack(true);
 });
+
 $('#calender-next').click(() => {
   goForward(true);
 });
