@@ -1,8 +1,11 @@
 import {getCalenderTemplate, WEEKLY_CUSTOM_THEME} from './calenderUtils';
+// @ts-ignore
 import Calendar from 'tui-calendar';
 // @ts-ignore
 import moment from 'moment';
+// @ts-ignore
 import $ from "jquery";
+// @ts-ignore
 import * as axiosa from 'axios'
 
 const axios = axiosa.default;
@@ -24,6 +27,7 @@ function loadSchedule(groupCode){
       lessons = [];
     })
     .then(response => {
+      let resObject: any = response.data;
       if(resObject == null) return;
 
       resObject.forEach((item) => {
