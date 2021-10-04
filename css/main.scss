@@ -308,3 +308,47 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+// Select2 styling
+.select2-container{
+  width: 250px!important;
+}
+
+.select2-container--default .select2-selection--single{
+  background-color: #5a5a5a;
+  border: 1px solid #5a5a5a;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+  color: #ffffff;
+}
+
+.select2-selection__arrow{
+  background-color: #ffb03e;
+}
+
+.select2-container--open .select2-dropdown--below{
+  background-color: #202020;
+  color: #ffffff;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true]{
+  background-color: #024900;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+  background-color: #d29133;
+}
+
+.select2-search__field{
+  background-color: #222222;
+  color: white;
+  &:focus{
+    outline: none;
+  }
+}
+
+.tui-full-calendar-popup-container{
+  background-color: #222222 !important;
+  color: #ffffff;
+}

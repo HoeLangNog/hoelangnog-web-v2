@@ -3,7 +3,6 @@ import * as axiosa from "axios";
 
 const axios = axiosa.default;
 
-
 //Variables used by timers globally
 let startTime;
 let endDate;
