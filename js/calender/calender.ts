@@ -23,7 +23,6 @@ function loadSchedule(groupCode){
       calendar.clear(true);
       lessons = [];
     }).then(response => {
-      if(response == null) return;
       let resObject: any = response.data;
       if(resObject == null) return;
 
@@ -60,7 +59,6 @@ function loadSchedule(groupCode){
       calendar.clear(true);
       lessons = [];
     }).then(response => {
-      if(response == null) return;
       let resObject: any = response.data;
       if(resObject == null) return;
 
@@ -97,7 +95,6 @@ function loadSchedule(groupCode){
       calendar.clear(true);
       lessons = [];
     }).then(response => {
-      if(response == null) return;
       let resObject: any = response.data;
       if(resObject == null) return;
 
@@ -180,13 +177,15 @@ let nextBtn = document.getElementById("calender-next");
 function goBack(execute){
   let today = new Date();
   let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  prevweek.setTime(prevweek.getTime() - 604800000)
+  prevweek.setTime(prevweek.getTime() - 604800000);
 
   if(prevweek.getTime() < calendar.getDateRangeStart().toDate().getTime()){
     if (!execute) return;
     calendar.prev();
-    prevBtn.classList.add("disabled");
     nextBtn.classList.remove("disabled");
+    if(prevweek.getTime() == calendar.getDateRangeStart().toDate().getTime()){
+      prevBtn.classList.add("disabled");
+    }
   }
 
 }
@@ -198,17 +197,18 @@ function goForward(execute){
   if(nextweek.getTime() > calendar.getDateRangeEnd().toDate().getTime()){
     if (!execute) return;
     calendar.next();
-    nextBtn.classList.add("disabled");
     prevBtn.classList.remove("disabled");
+    if(nextweek.getTime() == calendar.getDateRangeStart().toDate().getTime()){
+      nextBtn.classList.add("disabled");
+    }
   }
-
 }
 goForward(false);
 
 $('#calender-today').click(() => {
   calendar.today();
   nextBtn.classList.remove("disabled");
-  prevBtn.classList.add("disabled");
+  prevBtn.classList.remove("disabled");
 });
 
 $('#calender-prev').click(() => {
