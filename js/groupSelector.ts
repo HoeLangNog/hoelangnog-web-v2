@@ -17,6 +17,7 @@ function loadGroups(){
       }
       selector.empty();
       resObject.forEach((group) => {
+        if(group.visible == false)return;
         if(storedGroup == group.code){
           selector.append('<option value="'+group.code+'" selected>'+group.code+'</option>');
         }else{
