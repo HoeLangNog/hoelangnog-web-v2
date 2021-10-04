@@ -1,9 +1,8 @@
 import {getCalenderTemplate, WEEKLY_CUSTOM_THEME} from './calenderUtils';
-// @ts-ignore
 import Calendar from 'tui-calendar';
 // @ts-ignore
 import moment from 'moment';
-// @ts-ignore
+import $ from "jquery";
 import * as axiosa from 'axios'
 
 const axios = axiosa.default;
@@ -15,15 +14,16 @@ function getRandomInt(max) {
 
 function loadSchedule(groupCode){
   lessons = [];
+  let year = moment().format('YYYY')
   let curWeek = moment().format('w') - 1;
   let nextWeek = moment().format('w');
   let prevWeek = moment().format('w') - 2;
-  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+curWeek)
+  axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${curWeek}&year=${year}`)
     .catch(function (error) {
       calendar.clear(true);
       lessons = [];
-    }).then(response => {
-      let resObject: any = response.data;
+    })
+    .then(response => {
       if(resObject == null) return;
 
       resObject.forEach((item) => {
@@ -90,7 +90,7 @@ function loadSchedule(groupCode){
       calendar.clear(true);
       calendar.createSchedules(lessons);
     });
-  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week=" + prevWeek)
+  axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${prevWeek}&year=${year}`)
     .catch(function (error) {
       calendar.clear(true);
       lessons = [];
@@ -127,6 +127,7 @@ function loadSchedule(groupCode){
       calendar.createSchedules(lessons);
     });
 }
+loadSchedule("TTB4-SSD2C");
 
 let calendar = new Calendar('#calendar', {
   defaultView: 'week',
