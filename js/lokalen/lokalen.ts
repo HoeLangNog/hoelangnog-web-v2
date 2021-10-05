@@ -24,7 +24,9 @@ window.onload = () => {
 
 
     foundEl.innerHTML = "";
-    let prefix = prefixEl.getAttribute("value");
+    // @ts-ignore
+    let prefix = prefixEl.value;
+    // @ts-ignore
     axiosa.default.get("https://api.hoelangnog.xyz/locations/available/" + prefix + "/?starttime=" + new Date(startTimeEl2.value).getTime() / 1000 + "&endtime=" + new Date(endTimeEl2.value).getTime() / 1000)
       .then((response: AxiosResponse<Array<object>>) => {
         response.data.forEach(a => {
