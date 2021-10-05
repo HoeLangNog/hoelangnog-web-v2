@@ -19,9 +19,13 @@ window.onload = () => {
   let button = document.getElementById("submit-button");
 
   button.onclick = () => {
+    let startTimeEl2 = document.getElementById("start-time");
+    let endTimeEl2 = document.getElementById("end-time");
+
+
     foundEl.innerHTML = "";
     let prefix = prefixEl.getAttribute("value");
-    axiosa.default.get("https://api.hoelangnog.xyz/locations/available/" + prefix + "/?starttime=" + new Date(startTimeEl.getAttribute("value")).getTime() / 1000 + "&endtime=" + new Date(endTimeEl.getAttribute("value")).getTime() / 1000)
+    axiosa.default.get("https://api.hoelangnog.xyz/locations/available/" + prefix + "/?starttime=" + new Date(startTimeEl2.value).getTime() / 1000 + "&endtime=" + new Date(endTimeEl2.value).getTime() / 1000)
       .then((response: AxiosResponse<Array<object>>) => {
         response.data.forEach(a => {
           foundEl.innerHTML += `<hln-location name="${a.code}">`;
