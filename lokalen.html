@@ -39,7 +39,7 @@
 
   <div class="main centering-grid">
     <div class="available-selector">
-      <form onsubmit="onSelect()">
+      <form onkeydown="return event.key != 'Enter'">
         <div class="form-group">
           <label for="prefix">Lokaal prefix:</label>
           <input type="text" id="prefix" value="RN">
