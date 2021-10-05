@@ -49,9 +49,9 @@ function loadSchedule(groupCode){
           end: end,
           isAllDay: false,
           raw: {
-            location: "RN219", //TODO item.location
-            attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
-            teachers: ["mg32"], //TODO item.teachers
+            location: item.location, //TODO item.location
+            attendees: [item.group], //TODO item.attendees
+            teachers: [item.teacher], //TODO item.teachers
           }
         });
       });
@@ -140,7 +140,8 @@ let calendar = new Calendar('#calendar', {
     startDayOfWeek: 1,
     narrowWeekend: true,
   },
-  taskView: ['task'],
+  taskView: false,
+  scheduleView: ["time"],
   isReadOnly: true,
   useCreationPopup: false,
   useDetailPopup: true,
