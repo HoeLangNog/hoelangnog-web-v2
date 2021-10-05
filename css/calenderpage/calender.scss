@@ -80,7 +80,6 @@ html, body{
 .calender-container{
   padding: 50px;
   font-family: "Noto Sans Display", sans-serif;
-
 }
 
 .schedule-item-text{
@@ -94,4 +93,18 @@ html, body{
 
 .tui-full-calendar-layout {
   background-color: #202020 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .calender-container{
+    padding: 5px;
+  }
+  .menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .date{
+      margin-top: 5px;
+    }
+  }
 }

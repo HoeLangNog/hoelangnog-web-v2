@@ -10,6 +10,7 @@ import * as axiosa from 'axios'
 
 const axios = axiosa.default;
 let lessons = [];
+let dateText = document.getElementById("date-text");
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -54,9 +55,7 @@ function loadSchedule(groupCode){
           }
         });
       });
-
-      calendar.clear(true);
-      calendar.createSchedules(lessons);
+      updateCalender();
     });
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+nextWeek)
     .catch(function (error) {
@@ -90,9 +89,7 @@ function loadSchedule(groupCode){
           }
         });
       });
-
-      calendar.clear(true);
-      calendar.createSchedules(lessons);
+      updateCalender();
     });
   axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${prevWeek}&year=${year}`)
     .catch(function (error) {
@@ -126,15 +123,18 @@ function loadSchedule(groupCode){
           }
         });
       });
-
-      calendar.clear(true);
-      calendar.createSchedules(lessons);
+      updateCalender();
     });
 }
 loadSchedule("TTB4-SSD2C");
 
+let defaultView = 'week';
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  defaultView = 'day';
+}
+
 let calendar = new Calendar('#calendar', {
-  defaultView: 'week',
+  defaultView: defaultView,
   template: getCalenderTemplate(),
   week:{
     startDayOfWeek: 1,
@@ -147,6 +147,17 @@ let calendar = new Calendar('#calendar', {
   usageStatistics: false,
   theme: WEEKLY_CUSTOM_THEME,
 });
+
+
+function updateCalender(){
+  calendar.clear(true);
+  calendar.createSchedules(lessons);
+
+  let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+  let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+  let weekDate = monthDate + " - Week " + weekNr;
+  dateText.innerHTML = weekDate;
+}
 
 if(localStorage.getItem("group") != null){
   loadSchedule(localStorage.getItem("group"));
@@ -184,13 +195,18 @@ function goBack(execute){
   let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   prevweek.setTime(prevweek.getTime() - 604800000);
 
-  if(prevweek.getTime() < calendar.getDateRangeStart().toDate().getTime()){
+  if(prevweek.getTime() < calendar.getDate().toDate().getTime()){
     if (!execute) return;
     calendar.prev();
     nextBtn.classList.remove("disabled");
-    if(prevweek.getTime() == calendar.getDateRangeStart().toDate().getTime()){
+    if(prevweek.getTime() == calendar.getDate().toDate().getTime()){
       prevBtn.classList.add("disabled");
     }
+
+    let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+    let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+    let weekDate = monthDate + " - Week " + weekNr;
+    dateText.innerHTML = weekDate;
   }
 
 }
@@ -199,13 +215,18 @@ function goForward(execute){
   let today = new Date();
   let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
 
-  if(nextweek.getTime() > calendar.getDateRangeEnd().toDate().getTime()){
+  if(nextweek.getTime() > calendar.getDate().toDate().getTime()){
     if (!execute) return;
     calendar.next();
     prevBtn.classList.remove("disabled");
-    if(nextweek.getTime() == calendar.getDateRangeStart().toDate().getTime()){
+    if(nextweek.getTime() == calendar.getDate().toDate().getTime()){
       nextBtn.classList.add("disabled");
     }
+
+    let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+    let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+    let weekDate = monthDate + " - Week " + weekNr;
+    dateText.innerHTML = weekDate;
   }
 }
 goForward(false);
@@ -214,6 +235,11 @@ $('#calender-today').click(() => {
   calendar.today();
   nextBtn.classList.remove("disabled");
   prevBtn.classList.remove("disabled");
+
+  let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+  let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+  let weekDate = monthDate + " - Week " + weekNr;
+  dateText.innerHTML = weekDate;
 });
 
 $('#calender-prev').click(() => {
