@@ -189,11 +189,7 @@ if(localStorage.getItem("group") != null){
   loadSchedule(localStorage.getItem("group"));
 }
 
-$('#calender-group-select').on('change', function (e) {
-  let value = $('#calender-group-select').val();
-  localStorage.setItem('group', value);
-  loadSchedule(value);
-});
+
 
 // TASK template
 // calendar.createSchedules([

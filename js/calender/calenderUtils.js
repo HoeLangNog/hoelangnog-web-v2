@@ -193,3 +193,8 @@ export let WEEKLY_CUSTOM_THEME = {
   'week.dayGridSchedule.marginLeft': '10px',
   'week.dayGridSchedule.marginRight': '10px'
 };
+$('#calender-group-select').on('change', function (e) {
+  let value = $('#calender-group-select').val();
+  localStorage.setItem('group', value);
+  loadSchedule(value);
+});
