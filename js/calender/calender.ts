@@ -38,7 +38,7 @@ function loadSchedule(groupCode){
 
         let teacherName = "";
 
-        if (item.teacher.firstName == "") {
+        if (item.teacher.firstName == null) {
           teacherName = item.teacher.code;
         } else {
           teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
@@ -81,7 +81,7 @@ function loadSchedule(groupCode){
 
         let teacherName = "";
 
-        if (item.teacher.firstName == "") {
+        if (item.teacher.firstName == null) {
           teacherName = item.teacher.code;
         } else {
           teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
@@ -123,7 +123,7 @@ function loadSchedule(groupCode){
 
         let teacherName = "";
 
-        if (item.teacher.firstName == "") {
+        if (item.teacher.firstName == null) {
           teacherName = item.teacher.code;
         } else {
           teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
