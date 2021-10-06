@@ -36,6 +36,15 @@ function loadSchedule(groupCode){
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
         let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
 
+        let teacherName = "";
+
+        if (item.teacher.firstName == "") {
+          teacherName = item.teacher.code;
+        } else {
+          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
+        }
+
+
         lessons.push({
           id: id+'',
           calendarId: id+'',
@@ -51,7 +60,7 @@ function loadSchedule(groupCode){
           raw: {
             location: item.location, //TODO item.location
             attendees: [item.group], //TODO item.attendees
-            teachers: [item.teacher], //TODO item.teachers
+            teachers: [teacherName], //TODO item.teachers
           }
         });
       });
@@ -70,6 +79,14 @@ function loadSchedule(groupCode){
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
         let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
 
+        let teacherName = "";
+
+        if (item.teacher.firstName == "") {
+          teacherName = item.teacher.code;
+        } else {
+          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
+        }
+
         lessons.push({
           id: id+'',
           calendarId: id+'',
@@ -83,9 +100,9 @@ function loadSchedule(groupCode){
           end: end,
           isAllDay: false,
           raw: {
-            location: "RN219", //TODO item.location
-            attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
-            teachers: ["mg32"], //TODO item.teachers
+            location: item.location, //TODO item.location
+            attendees: [item.group], //TODO item.attendees
+            teachers: [teacherName], //TODO item.teachers
           }
         });
       });
@@ -104,6 +121,14 @@ function loadSchedule(groupCode){
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
         let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
 
+        let teacherName = "";
+
+        if (item.teacher.firstName == "") {
+          teacherName = item.teacher.code;
+        } else {
+          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
+        }
+
         lessons.push({
           id: id+'',
           calendarId: id+'',
@@ -117,9 +142,9 @@ function loadSchedule(groupCode){
           end: end,
           isAllDay: false,
           raw: {
-            location: "RN219", //TODO item.location
-            attendees: ["TTB4-SSD2C", "TTB4-SSD3C"], //TODO item.attendees
-            teachers: ["mg32"], //TODO item.teachers
+            location: item.location, //TODO item.location
+            attendees: [item.group], //TODO item.attendees
+            teachers: [teacherName], //TODO item.teachers
           }
         });
       });
