@@ -11,12 +11,14 @@ import * as axiosa from 'axios'
 const axios = axiosa.default;
 let lessons = [];
 let dateText = document.getElementById("date-text");
+let myStorage = window.localStorage || localStorage;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function loadSchedule(groupCode){
+export function loadSchedule(groupCode){
+  lessons = null;
   lessons = [];
   let year = moment().format('YYYY')
   let curWeek = moment().format('w') - 1;
@@ -151,7 +153,6 @@ function loadSchedule(groupCode){
       updateCalender();
     });
 }
-loadSchedule("TTB4-SSD2C");
 
 let defaultView = 'week';
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -174,22 +175,19 @@ let calendar = new Calendar('#calendar', {
   theme: WEEKLY_CUSTOM_THEME,
 });
 
-
 function updateCalender(){
   calendar.clear(true);
   calendar.createSchedules(lessons);
 
   let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
   let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
-  let weekDate = monthDate + " - Week " + weekNr;
-  dateText.innerHTML = weekDate;
+  dateText.innerHTML = monthDate + " - Week " + weekNr;
 }
+updateCalender();
 
-if(localStorage.getItem("group") != null){
-  loadSchedule(localStorage.getItem("group"));
+if(myStorage.getItem("group") != null){
+  loadSchedule(myStorage.getItem("group"));
 }
-
-
 
 // TASK template
 // calendar.createSchedules([

@@ -60,21 +60,10 @@
   </div>
 
   <script src="js/groupSelector.ts"></script>
-  <script>
-    $(document).ready(function () {
-      $("#calender-group-select").select2({
-        dropdownAutoWidth: true,
-        closeOnSelect: true
-      });
-      $("select").on("select2:open", function(event) {
-        $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');
-      });
-    });
-  </script>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/calender/calender.ts"></script>
+  <script src="js/calender/calenderDropdown.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
