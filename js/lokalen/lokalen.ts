@@ -13,8 +13,10 @@ let button: HTMLElement;
 window.onload = () => {
   button = document.getElementById("submit-button");
 
-  var today = new Date();
-  var picker = DatePicker.createRangePicker({
+  let today = new Date();
+  let picker = DatePicker.createRangePicker({
+    timePicker: true,
+    format:'yyyy-MM-dd H:m',
     startpicker: {
       date: today,
       input: '#start-time',
@@ -26,12 +28,10 @@ window.onload = () => {
       input: '#end-time',
       container: '#end-time-container',
       weekStartDay: 'mon'
-    },
-    selectableRanges: [
-      [today, new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())]
-    ],
-    timePicker: true
+    }
   });
+  picker.setStartDate(today)
+  picker.setEndDate(today.setMinutes(today.getMinutes() + 30));
 
   button.onclick = onSearchClick;
 }
