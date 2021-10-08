@@ -10,6 +10,7 @@ import * as axiosa from 'axios'
 
 const axios = axiosa.default;
 let lessons = [];
+let loadedWeeks = [];
 let dateText = document.getElementById("date-text");
 let myStorage = window.localStorage || localStorage;
 
@@ -17,141 +18,65 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-export function loadSchedule(groupCode){
+function loadSchedule(groupCode, week, year){
+  if(loadedWeeks.includes(week))return;
+  axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${week}&year=${year}`)
+    .catch(function (error) {
+      calendar.clear(true);
+    })
+    .then(response => {
+      if(response == null) return;
+      if(response.data == null) return;
+      let resObject: any = response.data;
+
+      loadedWeeks.push(week);
+      resObject.forEach((item) => {
+        let id = getRandomInt(300);
+        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+
+        let teacherName = "";
+
+        if (item.teacher.firstName == null) {
+          teacherName = item.teacher.code;
+        } else {
+          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
+        }
+
+        lessons.push({
+          id: id+'',
+          calendarId: id+'',
+          category: 'time',
+          bgColor: "#0382b2",
+          color: "#fff",
+          borderColor: "#696969",
+          title: item.name,
+          body: 'none',
+          start: start,
+          end: end,
+          isAllDay: false,
+          raw: {
+            location: item.location, //TODO item.location
+            attendees: [item.group], //TODO item.attendees
+            teachers: [teacherName], //TODO item.teachers
+          }
+        });
+      });
+      updateCalender();
+    });
+}
+
+export function loadSchedules(groupCode){
   lessons = null;
   lessons = [];
   let year = moment().format('YYYY')
   let curWeek = moment().format('w') - 1;
   let nextWeek = moment().format('w');
   let prevWeek = moment().format('w') - 2;
-  axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${curWeek}&year=${year}`)
-    .catch(function (error) {
-      calendar.clear(true);
-      lessons = [];
-    })
-    .then(response => {
-      let resObject: any = response.data;
-      if(resObject == null) return;
 
-      resObject.forEach((item) => {
-        let id = getRandomInt(300);
-        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-
-        let teacherName = "";
-
-        if (item.teacher.firstName == null) {
-          teacherName = item.teacher.code;
-        } else {
-          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
-        }
-
-
-        lessons.push({
-          id: id+'',
-          calendarId: id+'',
-          category: 'time',
-          bgColor: "#0382b2",
-          color: "#fff",
-          borderColor: "#696969",
-          title: item.name,
-          body: 'none',
-          start: start,
-          end: end,
-          isAllDay: false,
-          raw: {
-            location: item.location, //TODO item.location
-            attendees: [item.group], //TODO item.attendees
-            teachers: [teacherName], //TODO item.teachers
-          }
-        });
-      });
-      updateCalender();
-    });
-  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?week="+nextWeek)
-    .catch(function (error) {
-      calendar.clear(true);
-      lessons = [];
-    }).then(response => {
-      let resObject: any = response.data;
-      if(resObject == null) return;
-
-      resObject.forEach((item) => {
-        let id = getRandomInt(300);
-        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-
-        let teacherName = "";
-
-        if (item.teacher.firstName == null) {
-          teacherName = item.teacher.code;
-        } else {
-          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
-        }
-
-        lessons.push({
-          id: id+'',
-          calendarId: id+'',
-          category: 'time',
-          bgColor: "#0382b2",
-          color: "#fff",
-          borderColor: "#696969",
-          title: item.name,
-          body: 'none',
-          start: start,
-          end: end,
-          isAllDay: false,
-          raw: {
-            location: item.location, //TODO item.location
-            attendees: [item.group], //TODO item.attendees
-            teachers: [teacherName], //TODO item.teachers
-          }
-        });
-      });
-      updateCalender();
-    });
-  axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${prevWeek}&year=${year}`)
-    .catch(function (error) {
-      calendar.clear(true);
-      lessons = [];
-    }).then(response => {
-      let resObject: any = response.data;
-      if(resObject == null) return;
-
-      resObject.forEach((item) => {
-        let id = getRandomInt(300);
-        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-
-        let teacherName = "";
-
-        if (item.teacher.firstName == null) {
-          teacherName = item.teacher.code;
-        } else {
-          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
-        }
-
-        lessons.push({
-          id: id+'',
-          calendarId: id+'',
-          category: 'time',
-          bgColor: "#0382b2",
-          color: "#fff",
-          borderColor: "#696969",
-          title: item.name,
-          body: 'none',
-          start: start,
-          end: end,
-          isAllDay: false,
-          raw: {
-            location: item.location, //TODO item.location
-            attendees: [item.group], //TODO item.attendees
-            teachers: [teacherName], //TODO item.teachers
-          }
-        });
-      });
-      updateCalender();
-    });
+  loadSchedule(groupCode, prevWeek, year);
+  loadSchedule(groupCode, curWeek, year);
+  loadSchedule(groupCode, nextWeek, year);
 }
 
 let defaultView = 'week';
@@ -186,7 +111,7 @@ function updateCalender(){
 updateCalender();
 
 if(myStorage.getItem("group") != null){
-  loadSchedule(myStorage.getItem("group"));
+  loadSchedules(myStorage.getItem("group"));
 }
 
 // TASK template
@@ -211,43 +136,30 @@ if(myStorage.getItem("group") != null){
 let prevBtn = document.getElementById("calender-prev");
 let nextBtn = document.getElementById("calender-next");
 function goBack(execute){
-  let today = new Date();
-  let prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  prevweek.setTime(prevweek.getTime() - 604800000);
+  if (!execute) return;
+  calendar.prev();
 
-  if(prevweek.getTime() < calendar.getDate().toDate().getTime()){
-    if (!execute) return;
-    calendar.prev();
-    nextBtn.classList.remove("disabled");
-    if(prevweek.getTime() == calendar.getDate().toDate().getTime()){
-      prevBtn.classList.add("disabled");
-    }
+  let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+  let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+  dateText.innerHTML = monthDate + " - Week " + weekNr;
 
-    let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
-    let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
-    let weekDate = monthDate + " - Week " + weekNr;
-    dateText.innerHTML = weekDate;
-  }
+  let year = moment().format('YYYY')
+  let prevWeek = weekNr - 1;
+  loadSchedule(myStorage.getItem("group"), prevWeek, year);
 
 }
 goBack(false);
 function goForward(execute){
-  let today = new Date();
-  let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+  if (!execute) return;
+  calendar.next();
 
-  if(nextweek.getTime() > calendar.getDate().toDate().getTime()){
-    if (!execute) return;
-    calendar.next();
-    prevBtn.classList.remove("disabled");
-    if(nextweek.getTime() == calendar.getDate().toDate().getTime()){
-      nextBtn.classList.add("disabled");
-    }
+  let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
+  let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
+  dateText.innerHTML = monthDate + " - Week " + weekNr;
 
-    let monthDate = moment(calendar.getDate().toDate().getTime()).format('yyyy-MM');
-    let weekNr = moment(calendar.getDate().toDate().getTime()).format('w') - 1;
-    let weekDate = monthDate + " - Week " + weekNr;
-    dateText.innerHTML = weekDate;
-  }
+  let year = moment().format('YYYY')
+  let prevWeek = weekNr + 1;
+  loadSchedule(myStorage.getItem("group"), prevWeek, year);
 }
 goForward(false);
 

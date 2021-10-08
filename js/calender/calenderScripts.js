@@ -1,4 +1,4 @@
-import {loadSchedule} from "./calender";
+import {loadSchedules} from "./calender";
 
 $(document).ready(function () {
   let myStorage = window.localStorage || localStorage;
@@ -11,7 +11,7 @@ $(document).ready(function () {
     console.log("change");
     let value = $('#calender-group-select').val();
     myStorage.setItem('group', value);
-    loadSchedule(value);
+    loadSchedules(value);
   });
   $("select").on("select2:open", function(event) {
     $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');
