@@ -164,6 +164,10 @@ body {
   outline: none !important;
   border: none !important;
 }
+
+.tui-timepicker option {
+  background-color: #333333;
+}
 .tui-is-selected-range , .tui-is-selected-range * {
   color: white !important;
   background-color: #ffbf59 !important;
