@@ -1,4 +1,4 @@
-import {getCalenderTemplate, WEEKLY_CUSTOM_THEME} from './calenderUtils';
+import {getCalenderTemplate, WEEKLY_CUSTOM_THEME, generateStringColor} from './calenderUtils';
 // @ts-ignore
 import Calendar from 'tui-calendar';
 // @ts-ignore
@@ -61,12 +61,13 @@ function loadSchedule(groupCode, week, year){
             teacherName = [`${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`];
           }
         }
+        let itemColor = generateStringColor(item.name);
 
         lessons.push({
           id: id+'',
           calendarId: id+'',
           category: 'time',
-          bgColor: "#0382b2",
+          bgColor: itemColor,
           color: "#fff",
           borderColor: "#696969",
           title: item.name,

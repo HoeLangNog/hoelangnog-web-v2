@@ -193,3 +193,16 @@ export let WEEKLY_CUSTOM_THEME = {
   'week.dayGridSchedule.marginLeft': '10px',
   'week.dayGridSchedule.marginRight': '10px'
 };
+
+export function generateStringColor(str){
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  let colour = '#';
+  for (let i = 0; i < 3; i++) {
+    let value = (hash >> (i * 8)) & 0xFF;
+    colour += ('00' + value.toString(12)).substr(-2);
+  }
+  return colour;
+}
