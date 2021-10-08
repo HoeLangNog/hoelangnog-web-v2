@@ -356,3 +356,12 @@ textarea {
 .select2-results__option{
   font-family: "Noto Sans Display", sans-serif;
 }
+
+.loading-spinner{
+  margin-top: 4px;
+  margin-left: 5px;
+  .fa-circle-notch{
+    color: white;
+    font-size: 20px;
+  }
+}

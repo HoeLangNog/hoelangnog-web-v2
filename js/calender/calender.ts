@@ -19,8 +19,8 @@ function getRandomInt(max) {
 }
 
 function loadSchedule(groupCode, week, year){
-  console.log(loadedWeeks);
   if(loadedWeeks.includes(parseInt(week)))return;
+  $('.loading-spinner').removeClass("hidden");
   axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${week}&year=${year}`)
     .then(response => {
       if(response == null) return;
@@ -37,12 +37,29 @@ function loadSchedule(groupCode, week, year){
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
         let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
 
-        let teacherName = "";
+        let itemLocation;
+        if (item.location == null || item.location == "") {
+          itemLocation = 'Onbekend';
+        }else{
+          itemLocation = item.location;
+        }
 
-        if (item.teacher.firstName == null) {
-          teacherName = item.teacher.code;
-        } else {
-          teacherName = `${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`;
+        let itemGroups;
+        if (item.group == null) {
+          itemGroups = ['Onbekend'];
+        }else{
+          itemGroups = [item.group];
+        }
+
+        let teacherName;
+        if (item.teacher == null) {
+          teacherName = ['Onbekend'];
+        }else{
+          if (item.teacher.firstName == null) {
+            teacherName = [item.teacher.code];
+          } else {
+            teacherName = [`${item.teacher.firstName} ${item.teacher.lastName} <span class="teacher-code">${item.teacher.code}</span>`];
+          }
         }
 
         lessons.push({
@@ -58,19 +75,24 @@ function loadSchedule(groupCode, week, year){
           end: end,
           isAllDay: false,
           raw: {
-            location: item.location, //TODO item.location
-            attendees: [item.group], //TODO item.attendees
-            teachers: [teacherName], //TODO item.teachers
+            location: itemLocation,
+            attendees: itemGroups,
+            teachers: teacherName,
           }
         });
       });
       updateCalender();
+      $('.loading-spinner').addClass("hidden");
     });
 }
 
 export function loadSchedules(groupCode){
   lessons = null;
   lessons = [];
+  loadedWeeks = null;
+  loadedWeeks = [];
+
+  updateCalender();
   let year = moment().format('YYYY')
   let curWeek = moment().format('w') - 1;
   let nextWeek = moment().format('w');

@@ -17,9 +17,9 @@ export function getCalenderTemplate(){
       }
 
       let docent;
-      if(schedule.raw.teachers > 1){
+      if (schedule.raw.teachers > 1) {
         docent = '<i class="fas fa-users schedule-item-text"></i>' + schedule.raw.teachers.join(", ");
-      }else{
+      } else {
         docent = '<i class="fas fa-user-tie schedule-item-text"></i>' + schedule.raw.teachers.join(", ");
       }
 

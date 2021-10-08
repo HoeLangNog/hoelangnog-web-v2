@@ -8,7 +8,6 @@ $(document).ready(function () {
     closeOnSelect: true
   });
   calenderSelect.on('change', function() {
-    console.log("change");
     let value = $('#calender-group-select').val();
     myStorage.setItem('group', value);
     loadSchedules(value);
