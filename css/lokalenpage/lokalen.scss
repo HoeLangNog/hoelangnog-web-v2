@@ -6,6 +6,11 @@
   background-color: #222222;
 }
 
+body {
+  background-color: #222222;
+
+}
+
 .available-selector {
   background-color: #343434;
   padding: 25px;
@@ -143,6 +148,64 @@
   color: #9880ff;
   animation: dotFlashing 1s infinite alternate;
   animation-delay: 1s;
+}
+
+.tui-timepicker-row {
+  display: flex;
+}
+
+.tui-timepicker {
+  padding: 10px 20px !important;
+}
+
+.tui-timepicker select, .tui-ico-colon {
+  background: none;
+  color: white !important;
+  outline: none !important;
+  border: none !important;
+}
+.tui-is-selected-range , .tui-is-selected-range * {
+  color: white !important;
+  background-color: #ffbf59 !important;
+}
+
+.tui-is-selected {
+  background-color: #ffa200 !important;
+}
+
+
+.tui-datepicker {
+  background-color: #333333;
+}
+
+.tui-calendar {
+  background-color: #333333;
+
+}
+
+.tui-timepicker * {
+  border: none !important;
+}
+
+.tui-calendar-header, .tui-calendar-header > *, .tui-calendar-title-today, .tui-calendar-header > button, .tui-calendar-btn {
+  color: white !important;
+  background-color: #444444 !important;
+
+}
+
+em {
+  color: white !important;
+}
+.tui-calendar-btn::after {
+  color: white !important;
+
+}
+.tui-calendar .tui-calendar-title-today {
+
+}
+
+.tui-datepicker *, .tui-datepicker {
+  border-color: black !important;
 }
 
 @keyframes dotFlashing {
