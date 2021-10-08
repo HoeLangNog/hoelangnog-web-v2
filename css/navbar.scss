@@ -14,16 +14,9 @@
   justify-content: space-between;
 
   .navbar-header{
-    padding: 12px 20px;
-    .navbar-brand{
-      font-size: 25px;
-      color: white;
-      text-decoration: none;
-      transition: color 100ms linear;
-      &:hover{
-        cursor: pointer;
-        color: rgba(255,255,255,0.8);
-      }
+    padding: 12px;
+    .navbar-brand img{
+      height: 40px;
     }
   }
 
