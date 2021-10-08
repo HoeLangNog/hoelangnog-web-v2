@@ -16,7 +16,7 @@ window.onload = () => {
   let today = new Date();
   let picker = DatePicker.createRangePicker({
     timePicker: true,
-    format:'yyyy-MM-dd H:m',
+    format:'yyyy-MM-dd H:mm',
     startpicker: {
       date: today,
       input: '#start-time',
