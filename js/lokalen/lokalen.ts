@@ -1,24 +1,37 @@
 import {formatTime} from "../timer/timerutils.js";
 import * as axiosa from "axios";
 import {AxiosResponse} from "axios";
+import DatePicker from 'tui-date-picker';
 
 let searching = false;
 
 function onSelect() {
 
 }
+
 let button: HTMLElement;
 window.onload = () => {
   button = document.getElementById("submit-button");
 
-  let prefixEl = document.getElementById("prefix");
-  let startTimeEl = document.getElementById("start-time");
-  let endTimeEl = document.getElementById("end-time");
-  let foundEl = document.getElementById("found");
-  startTimeEl.setAttribute("value", formatTime(new Date(Date.now()), "yyyy-MM-ddTHH:mm"))
-  endTimeEl.setAttribute("value", formatTime(new Date(Date.now() + 3600000), "yyyy-MM-ddTHH:mm"))
-
-
+  var today = new Date();
+  var picker = DatePicker.createRangePicker({
+    startpicker: {
+      date: today,
+      input: '#start-time',
+      container: '#start-time-container',
+      weekStartDay: 'mon'
+    },
+    endpicker: {
+      date: today,
+      input: '#end-time',
+      container: '#end-time-container',
+      weekStartDay: 'mon'
+    },
+    selectableRanges: [
+      [today, new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())]
+    ],
+    timePicker: true
+  });
 
   button.onclick = onSearchClick;
 }
