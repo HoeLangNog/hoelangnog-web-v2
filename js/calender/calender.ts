@@ -19,17 +19,19 @@ function getRandomInt(max) {
 }
 
 function loadSchedule(groupCode, week, year){
-  if(loadedWeeks.includes(week))return;
+  console.log(loadedWeeks);
+  if(loadedWeeks.includes(parseInt(week)))return;
   axios.get(`https://api.hoelangnog.xyz/groups/${groupCode}/schedule?week=${week}&year=${year}`)
-    .catch(function (error) {
-      calendar.clear(true);
-    })
     .then(response => {
       if(response == null) return;
       if(response.data == null) return;
       let resObject: any = response.data;
 
-      loadedWeeks.push(week);
+      if(loadedWeeks.includes(parseInt(week)))return;
+      if(!loadedWeeks.includes(parseInt(week))){
+        loadedWeeks.push(parseInt(week));
+      }
+
       resObject.forEach((item) => {
         let id = getRandomInt(300);
         let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
