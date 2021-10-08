@@ -9,14 +9,14 @@ export function getCalenderTemplate(){
       let title = '<span style="font-size: 18px;">'+schedule.title+'</span>';
       let time = '<i class="fas fa-clock schedule-item-text"></i>' + moment(schedule.start.getTime()).format('HH:mm') + ' - ' +moment(schedule.end.getTime()).format('HH:mm');
       let location = '<i class="fas fa-map-marker-alt schedule-item-text"></i>' + schedule.raw.location;
-      let klas = '';
+      let klas;
       if(schedule.attendees > 1){
         klas = '<i class="fas fa-user schedule-item-text"></i>' + schedule.raw.attendees.join(", ");
       }else{
         klas = '<i class="fas fa-user schedule-item-text"></i>' + schedule.raw.attendees.join(", ");
       }
 
-      let docent = '';
+      let docent;
       if(schedule.raw.teachers > 1){
         docent = '<i class="fas fa-users schedule-item-text"></i>' + schedule.raw.teachers.join(", ");
       }else{
@@ -28,11 +28,11 @@ export function getCalenderTemplate(){
       }else if(duration >= 100){
         return title+'<br>'+time+'&nbsp;&nbsp;'+location+'<br>'+klas+'<br>'+docent;
       }else if(duration >= 90){
-        return title+'<br>'+time+'&nbsp;&nbsp;'+location+'&nbsp;&nbsp;'+docent+'<br>'+klas;
+        return title+'<br>'+time+'&nbsp;&nbsp;'+location+'<br>'+docent;
       }else if(duration >= 75){
-        return title+'<br>'+time+'&nbsp;&nbsp;'+location+'&nbsp;&nbsp;'+docent+'<br>'+klas;
+        return title+'<br>'+time+'&nbsp;&nbsp;'+location+'<br>'+docent;
       }else if(duration >= 60){
-        return title+'<br>'+time+'&nbsp;&nbsp;'+location+'&nbsp;&nbsp;'+docent;
+        return title+'<br>'+time+'&nbsp;&nbsp;'+location;
       }else{
         return title+'&nbsp;&nbsp;'+time+'&nbsp;&nbsp;'+location;
       }
