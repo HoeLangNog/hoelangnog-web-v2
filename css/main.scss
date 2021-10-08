@@ -365,3 +365,22 @@ textarea {
     font-size: 20px;
   }
 }
+
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222222;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffa200;
+  border-radius: 100000px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffb03e;
+}
