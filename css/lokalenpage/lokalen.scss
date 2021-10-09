@@ -52,7 +52,7 @@ body {
         border: #ffa200 solid 2px;
       }
 
-      &[type="button"] {
+      &.button {
         padding: 15px;
         border-radius: 400px;
         width: 100%;
@@ -111,14 +111,14 @@ body {
  * ==============================================
  */
 .dot-flashing {
-  position: relative;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #9880ff;
-  color: #9880ff;
-  animation: dotFlashing 1s infinite linear alternate;
-  animation-delay: .5s;
+  position: relative !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 5px !important;
+  background-color: #9880ff !important;
+  color: #9880ff !important;
+  animation: dotFlashing 1s infinite linear alternate !important;
+  animation-delay: .5s !important;
 }
 
 .dot-flashing::before, .dot-flashing::after {

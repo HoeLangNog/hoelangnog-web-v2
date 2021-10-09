@@ -1,6 +1,9 @@
 import {formatTime} from "../timer/timerutils.js";
+// @ts-ignore
 import * as axiosa from "axios";
+// @ts-ignore
 import {AxiosResponse} from "axios";
+// @ts-ignore
 import DatePicker from 'tui-date-picker';
 
 let searching = false;
@@ -44,6 +47,8 @@ function onSearchClick() {
   button.setAttribute("value", "");
 
   button.classList.add("dot-flashing");
+  button.classList.remove("button");
+
 
 
   let startTimeEl2 = document.getElementById("start-time");
@@ -54,8 +59,9 @@ function onSearchClick() {
   foundEl.innerHTML = "";
   // @ts-ignore
   let prefix = prefixEl.value;
-
+// @ts-ignore
   let startDate = new Date(startTimeEl2.value);
+  // @ts-ignore
   let endDate = new Date(endTimeEl2.value);
   console.log(startDate.getTimezoneOffset());
 
@@ -69,6 +75,8 @@ function onSearchClick() {
       button.setAttribute("value", "Zoek");
 
       button.classList.remove("dot-flashing");
+      button.classList.add("button");
+
 
       response.data.forEach(a => {
         foundEl.innerHTML += `<hln-location name="${a.code}">`;
