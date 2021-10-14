@@ -31,8 +31,12 @@ window.onload = () => {
       input: '#end-time',
       container: '#end-time-container',
       weekStartDay: 'mon'
-    }
+    },
+    selectableRanges: [
+      [today, new Date(today.getFullYear(), today.getMonth() + 2, today.getDate())]
+    ]
   });
+
   picker.setStartDate(today)
   picker.setEndDate(today.setMinutes(today.getMinutes() + 30));
 

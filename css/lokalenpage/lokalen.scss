@@ -194,7 +194,15 @@ body {
 .tui-calendar-header, .tui-calendar-header > *, .tui-calendar-title-today, .tui-calendar-header > button, .tui-calendar-btn {
   color: white !important;
   background-color: #444444 !important;
-
+}
+.tui-datepicker .tui-is-blocked{
+  color: #999;
+}
+.tui-calendar th, .tui-calendar td{
+  color: #fff;
+}
+.tui-is-selectable:hover{
+  color: black;
 }
 
 em {
