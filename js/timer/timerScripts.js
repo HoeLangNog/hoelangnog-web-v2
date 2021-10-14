@@ -1,3 +1,4 @@
+import {loadTimerTime} from "./timer";
 
 $(document).ready(function () {
   let myStorage = window.localStorage || localStorage;
@@ -9,7 +10,8 @@ $(document).ready(function () {
   calenderSelect.on('change', function() {
     let value = $('#calender-group-select').val();
     myStorage.setItem('group', value);
-    loadSchedules(value);
+    console.log(myStorage.getItem("group"))
+    loadTimerTime(value);
   });
   $("select").on("select2:open", function(event) {
     $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');

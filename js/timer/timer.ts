@@ -1,22 +1,32 @@
 import {setProgress, formatTime} from './timerutils'
+// @ts-ignore
 import * as axiosa from "axios";
-
 const axios = axiosa.default;
+
+let myStorage = window.localStorage || localStorage;
 
 //Variables used by timers globally
 let startTime;
 let endDate;
 
-axios.get("https://api.hoelangnog.xyz/unixoftoday")
-  .then(response => {
-    let resObject: any = response.data;
-    startTime = new Date(resObject.start * 1000);
-    endDate = new Date(resObject.last * 1000);
+export function loadTimerTime(groupCode){
+  startTime = null;
+  endDate = null;
 
-    //This starts the timer
-    tickTimer();
-  });
+  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/unixoftoday")
+    .then(response => {
+      let resObject: any = response.data;
+      startTime = new Date(resObject.start * 1000);
+      endDate = new Date(resObject.last * 1000);
 
+      //This starts the timer
+      tickTimer();
+    });
+}
+
+if(myStorage.getItem("group") != null){
+  loadTimerTime(myStorage.getItem("group"));
+}
 
 function tickTimer() {
   let currentTime = Date.now()
@@ -33,7 +43,6 @@ function tickTimer() {
     }
     waitForNextTick();
     return;
-
   }
 
   let timeToDisplay = new Date(difference);
@@ -48,7 +57,6 @@ function tickTimer() {
     element.setAttribute("progress", `${percent}`);
   }
 
-
   waitForNextTick();
 }
 
@@ -56,8 +64,4 @@ function waitForNextTick() {
   setTimeout(() => {
     tickTimer();
   }, 100);
-}
-
-function writeNumber(date: Date) {
-  // textElement.innerText = formatTime(date, "HH:mm:ss", true)
 }
