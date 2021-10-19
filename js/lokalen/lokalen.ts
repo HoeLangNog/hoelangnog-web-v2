@@ -64,9 +64,9 @@ function onSearchClick() {
   // @ts-ignore
   let prefix = prefixEl.value;
 // @ts-ignore
-  let startDate = new Date(startTimeEl2.value);
+  let startDate = new Date(startTimeEl2.value + " CEST");
   // @ts-ignore
-  let endDate = new Date(endTimeEl2.value);
+  let endDate = new Date(endTimeEl2.value + " CEST");
   console.log(startDate.getTimezoneOffset());
 
   startDate.setTime(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
