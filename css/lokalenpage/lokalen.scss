@@ -4,31 +4,23 @@
   width: 100vw;
   min-height: calc(100vh - 66px);
   background-color: #222222;
+  overflow: hidden;
 }
 
 body {
   background-color: #222222;
-
+  overflow: hidden;
 }
 
 .available-selector {
   background-color: #343434;
   padding: 25px;
   border-radius: 10px;
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr auto;
   gap: 20px;
 
   font-family: "Noto Sans Display", sans-serif;
-
-  .tui-datepicker-input{
-    border: none;
-    width: 100%;
-  }
-
-  .tui-calendar-container > *{
-    z-index: 99;
-  }
 
   .form-group {
     z-index: 10;
@@ -51,17 +43,19 @@ body {
       &:focus {
         border: #ffa200 solid 2px;
       }
+    }
 
-      &.button {
-        padding: 15px;
-        border-radius: 400px;
-        width: 100%;
-        background-color: #ffa200;
-        color: #000000;
+    .button {
+      outline: none;
+      border: none;
+      padding: 15px;
+      border-radius: 400px;
+      width: 100%;
+      background-color: #ffa200;
+      color: #ffffff;
 
-        &:hover {
-          background-color: #ffb03e;
-        }
+      &:hover {
+        background-color: #ffb03e;
       }
     }
 
@@ -150,61 +144,6 @@ body {
   animation-delay: 1s;
 }
 
-.tui-timepicker-row {
-  display: flex;
-}
-
-.tui-timepicker {
-  padding: 10px 20px !important;
-}
-
-.tui-timepicker select, .tui-ico-colon {
-  background: none;
-  color: white !important;
-  outline: none !important;
-  border: none !important;
-}
-
-.tui-timepicker option {
-  background-color: #333333;
-}
-.tui-is-selected-range , .tui-is-selected-range * {
-  color: white !important;
-  background-color: #ffbf59 !important;
-}
-
-.tui-is-selected {
-  background-color: #ffa200 !important;
-}
-
-
-.tui-datepicker {
-  background-color: #333333;
-}
-
-.tui-calendar {
-  background-color: #333333;
-
-}
-
-.tui-timepicker * {
-  border: none !important;
-}
-
-.tui-calendar-header, .tui-calendar-header > *, .tui-calendar-title-today, .tui-calendar-header > button, .tui-calendar-btn {
-  color: white !important;
-  background-color: #444444 !important;
-}
-.tui-datepicker .tui-is-blocked{
-  color: #999;
-}
-.tui-calendar th, .tui-calendar td{
-  color: #fff;
-}
-.tui-is-selectable:hover{
-  color: black;
-}
-
 em {
   color: white !important;
 }
@@ -228,4 +167,69 @@ em {
   100% {
     background-color: #ebe6ff;
   }
+}
+
+.fa-spinner{
+  color: white!important;
+  font-size: 15px;
+}
+
+.daterangepicker, .calendar-table {
+  margin-top: 5.5px!important;
+  background-color: #222222!important;
+  color: white!important;
+  border-color: #ffa200!important;
+  &:before, &:after{
+    border-bottom: 6px solid #ffa200!important;
+  }
+  .drp-buttons{
+    border-color: #ffa200!important;
+  }
+  .hourselect, .minuteselect{
+    background-color: #222222!important;
+    border-color: #ffa200!important;
+    color: white!important;
+  }
+  .prev span, .next span{
+    border-color: white!important;
+  }
+  td, th{
+    background-color: #222222!important;
+    color: white!important;
+    &:hover{
+      background-color: #494949 !important;
+    }
+    &.disabled{
+      color: #8c8c8c !important;
+    }
+    &.active{
+      background-color: #ffa200!important;
+    }
+  }
+  .cancelBtn, .applyBtn{
+    outline: none!important;
+    border: none!important;
+    padding: 5px 15px!important;
+    border-radius: 400px!important;
+    background-color: #ffa200!important;
+    color: #ffffff !important;
+
+    &:hover {
+      background-color: #ffb03e!important;
+    }
+  }
+}
+
+.daterangepicker.drop-up{
+  margin-top: -5px!important;
+}
+
+.daterangepicker.drop-up:before{
+  border-bottom: none!important;
+  border-top: 6px solid #ffa200!important;
+}
+
+.daterangepicker.drop-up:after{
+  border-bottom: none!important;
+  border-top: 6px solid #ffa200!important;
 }

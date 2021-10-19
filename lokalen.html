@@ -17,14 +17,16 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
-
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/lokalenpage/lokalen.scss">
   <link rel="stylesheet" href="css/navbar.scss">
   <script async src="https://kit.fontawesome.com/41c28e8a2f.js" crossorigin="anonymous"></script>
 
-  <script src="js/lokalen/lokalen.ts"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
@@ -45,36 +47,32 @@
 
 <div class="main centering-grid">
     <div class="available-selector">
-      <form onkeydown="return event.key != 'Enter'">
+      <form onkeydown="return event.key !== 'Enter'">
         <div class="form-group">
           <label for="prefix">Lokaal prefix:</label>
           <input type="text" id="prefix" value="RN">
         </div>
 
         <div class="form-group">
-          <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-            <input class="datepicker-input" id="start-time" type="text" aria-label="Date-Time" autocomplete="off">
-            <span class="tui-ico-date"></span>
-            <div id="start-time-container" style="margin-left: -1px;"></div>
-          </div>
+          <label for="start-time">Start:</label>
+          <input type="text" id="start-time" />
         </div>
 
         <div class="form-group">
-          <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-            <input class="datepicker-input" id="end-time" type="text" aria-label="Date-Time" autocomplete="off">
-            <span class="tui-ico-date"></span>
-            <div id="end-time-container" style="margin-left: -1px;"></div>
-          </div>
+          <label for="end-time">End:</label>
+          <input type="text" id="end-time" />
         </div>
 
         <div class="form-group">
-          <input class="button" type="button" id="submit-button" value="Zoek">
+          <button type="button" class="button" id="submit-button">Zoek</button>
         </div>
+
       </form>
 
-      <div class="found" id="found">
-      </div>
+      <div class="found hidden" id="found"></div>
     </div>
   </div>
+
+  <script src="js/lokalen/lokalen.ts"></script>
 </body>
 </html>
