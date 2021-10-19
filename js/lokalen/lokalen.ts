@@ -19,9 +19,7 @@ window.onload = () => {
     "timePicker24Hour": true,
     "singleDatePicker": true,
     "autoUpdateInput": false,
-    "drops": "auto",
-    "minDate": moment().format('MM/DD/YYYY HH:mm'),
-    "maxDate": moment().add("2", "week").format('MM/DD/YYYY HH:mm')
+    "drops": "auto"
   }, function(start, end, label) {
     $('#start-time').val(start.format('MM/DD/YYYY HH:mm'));
     $('#end-time').val(start.add("1", "hour").format('MM/DD/YYYY HH:mm'));
@@ -31,8 +29,7 @@ window.onload = () => {
       "singleDatePicker": true,
       "autoUpdateInput": false,
       "drops": "auto",
-      "minDate": start.format('MM/DD/YYYY HH:mm'),
-      "maxDate": moment().add("2", "week").format('MM/DD/YYYY HH:mm')
+      "minDate": start.format('MM/DD/YYYY HH:mm')
     }, function(start, end, label) {
       $('#end-time').val(start.format('MM/DD/YYYY HH:mm'));
     });
@@ -45,8 +42,7 @@ window.onload = () => {
     "singleDatePicker": true,
     "autoUpdateInput": false,
     "drops": "auto",
-    "minDate": moment().format('MM/DD/YYYY HH:mm'),
-    "maxDate": moment().add("2", "week").format('MM/DD/YYYY HH:mm')
+    "minDate": moment().format('MM/DD/YYYY HH:mm')
   }, function(start, end, label) {
     $('#end-time').val(start.format('MM/DD/YYYY HH:mm'));
   });
