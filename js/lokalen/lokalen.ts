@@ -64,13 +64,13 @@ function onSearchClick() {
   // @ts-ignore
   let prefix = prefixEl.value;
 // @ts-ignore
-  let startDate = new Date(startTimeEl2.value + " CEST");
+  let startDate = new Date(startTimeEl2.value);
   // @ts-ignore
-  let endDate = new Date(endTimeEl2.value + " CEST");
+  let endDate = new Date(endTimeEl2.value);
   console.log(startDate.getTimezoneOffset());
 
-  startDate.setTime(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
-  endDate.setTime(endDate.getTime() - endDate.getTimezoneOffset() * 60000)
+  startDate.setTime(startDate.getTime() - -120 * 60000)
+  endDate.setTime(endDate.getTime() - -120 * 60000)
 
   // @ts-ignore
   axiosa.default.get("https://api.hoelangnog.xyz/locations/available/" + prefix + "/?starttime=" + startDate.getTime() / 1000 + "&endtime=" + endDate.getTime() / 1000)
