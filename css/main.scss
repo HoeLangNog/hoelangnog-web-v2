@@ -346,6 +346,24 @@ textarea {
   }
 }
 
+.hide-on-mouse{
+  opacity: 1;
+  transition: opacity 200ms linear;
+}
+
+.hidden-by-mouse{
+  opacity: 0;
+}
+
+.hidenav-on-mouse{
+  transform: translateY(0px);
+  transition: transform 200ms linear;
+}
+
+.hiddennav-by-mouse{
+  transform: translateY(-68px);
+}
+
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;

@@ -6,12 +6,10 @@
   background-color: #222222;
 }
 
-
-
-
 .timer-main>div {
   transform: scale(1.5);
 }
+
 .progress-ring {
   position: absolute;
   z-index: 0;

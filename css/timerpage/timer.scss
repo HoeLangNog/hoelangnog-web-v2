@@ -2,8 +2,11 @@
 
 .timer-main {
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: 100vh;
   background-color: #222222;
+  h2{
+    top: 0!important;
+  }
 }
 
 #timer-text {
