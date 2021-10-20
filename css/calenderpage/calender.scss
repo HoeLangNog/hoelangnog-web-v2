@@ -5,7 +5,6 @@ html, body{
   overflow-y: hidden;
 }
 
-
 .menu{
   display: flex;
   justify-content: space-between;
@@ -83,6 +82,7 @@ html, body{
 }
 
 .calender-container{
+  margin-top: 60px;
   padding: 30px 50px;
   font-family: "Noto Sans Display", sans-serif;
 }
