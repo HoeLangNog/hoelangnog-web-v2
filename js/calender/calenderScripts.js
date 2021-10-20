@@ -1,5 +1,5 @@
-import {loadSchedules} from "./calender";
-import {initCustomHourMark} from './calenderHourMark';
+import {loadSchedules, calendar} from "./calender";
+//import {initCustomHourMark} from './calenderHourMark';
 
 $(document).ready(function () {
   let myStorage = window.localStorage || localStorage;
@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');
   });
 
-  initCustomHourMark();
+  // initCustomHourMark(calendar);
   setTimeout(function() {
     $(".tui-view-7").height( $(window).height() - 200 );
   }, 2000);

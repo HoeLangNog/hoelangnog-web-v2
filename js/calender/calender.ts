@@ -109,7 +109,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
   defaultView = 'day';
 }
 
-let calendar = new Calendar('#calendar', {
+export let calendar = new Calendar('#calendar', {
   defaultView: defaultView,
   template: getCalenderTemplate(),
   week:{
