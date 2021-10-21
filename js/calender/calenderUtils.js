@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export function getCalenderTemplate(){
   return {
@@ -7,7 +7,10 @@ export function getCalenderTemplate(){
       let duration = start_time.diff(schedule.start.getTime(), "minutes");
 
       let title = '<span style="font-size: 18px;">'+schedule.title+'</span>';
-      let time = '<i class="fas fa-clock schedule-item-text"></i>' + moment(schedule.start.getTime()).format('HH:mm') + ' - ' +moment(schedule.end.getTime()).format('HH:mm');
+      let time = '<i class="fas fa-clock schedule-item-text"></i>' +
+        moment(schedule.start.getTime()).utcOffset('+0200').format('HH:mm') +
+        ' - ' +
+        moment(schedule.end.getTime()).utcOffset('+0200').format('HH:mm');
       let location = '<i class="fas fa-map-marker-alt schedule-item-text"></i>' + schedule.raw.location;
       let klas;
       if(schedule.attendees > 1){
@@ -45,8 +48,8 @@ export function getCalenderTemplate(){
       return title+' '+vak+' '+link;
     },
     popupDetailDate: function(isAllDay, start, end) {
-      let start_time = moment.unix(start / 1000).format("YYYY-MM-DD HH:mm:ss");
-      let end_time = moment.unix(end / 1000).format("YYYY-MM-DD HH:mm:ss");
+      let start_time = moment.unix(start / 1000).utcOffset('+0200').format("YYYY-MM-DD HH:mm:ss");
+      let end_time = moment.unix(end / 1000).utcOffset('+0200').format("YYYY-MM-DD HH:mm:ss");
       return start_time+' - '+end_time;
     },
     popupDetailBody: function(schedule) {

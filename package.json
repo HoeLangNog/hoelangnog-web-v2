@@ -22,6 +22,7 @@
     "jquery": "^3.6.0",
     "lit": "^2.0.0",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "tui-calendar": "^1.14.1",
     "tui-date-picker": "^4.3.1"
   }

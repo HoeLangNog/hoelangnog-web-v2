@@ -1,7 +1,7 @@
 // @ts-ignore
 import $ from "jquery";
 // @ts-ignore
-import moment from 'moment';
+import moment from 'moment-timezone';
 // @ts-ignore
 import Calendar from 'tui-calendar';
 

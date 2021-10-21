@@ -2,7 +2,7 @@ import {getCalenderTemplate, WEEKLY_CUSTOM_THEME, generateStringColor} from './c
 // @ts-ignore
 import Calendar from 'tui-calendar';
 // @ts-ignore
-import moment from 'moment';
+import moment from 'moment-timezone';
 // @ts-ignore
 import $ from "jquery";
 // @ts-ignore
@@ -34,8 +34,8 @@ function loadSchedule(groupCode, week, year){
 
       resObject.forEach((item) => {
         let id = getRandomInt(300);
-        let start = moment.unix(item.start_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
-        let end = moment.unix(item.end_time).subtract(2, "h").format("YYYY-MM-DDTHH:mm:ss");
+        let start = moment.unix(item.start_time).utcOffset('+0000').format("YYYY-MM-DDTHH:mm:ss");
+        let end = moment.unix(item.end_time).utcOffset('+0000').format("YYYY-MM-DDTHH:mm:ss");
 
         let itemLocation;
         if (item.location == null || item.location == "") {
