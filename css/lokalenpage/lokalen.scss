@@ -1,10 +1,12 @@
 @import "../main.scss";
 
 .main {
+  margin-top: 80px;
+  margin-bottom: 10px;
   width: 100vw;
-  min-height: calc(100vh - 66px);
+  min-height: calc(100vh - 100px);
   background-color: #222222;
-  overflow: hidden;
+  font-family: 'sans-serif', 'Source Sans Pro';
 }
 
 body {
@@ -19,8 +21,9 @@ body {
   display: flex;
   grid-template-columns: 1fr auto;
   gap: 20px;
+  height: calc(0px + 100vh - 150px);
 
-  font-family: "Noto Sans Display", sans-serif;
+  font-family: 'sans-serif', 'Source Sans Pro';
 
   .form-group {
     z-index: 10;
@@ -56,6 +59,7 @@ body {
 
       &:hover {
         background-color: #ffb03e;
+        cursor: pointer;
       }
     }
 
@@ -67,6 +71,7 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     border: #424242 solid 1px;
     border-radius: 15px;
+    overflow-y: auto;
 
     hln-location {
       margin: 10px;
