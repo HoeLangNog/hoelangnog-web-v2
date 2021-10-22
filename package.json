@@ -6,8 +6,8 @@
   "license": "",
   "author": "",
   "scripts": {
-    "build": "parcel build index.html calender.html",
-    "dev": "parcel index.html calender.html --open",
+    "build": "parcel build index.html lokalen.html calender.html",
+    "dev": "parcel index.html lokalen.html calender.html --open",
     "start": "npm run build && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
