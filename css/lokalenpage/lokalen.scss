@@ -21,7 +21,7 @@ body {
   display: flex;
   grid-template-columns: 1fr auto;
   gap: 20px;
-  height: calc(0px + 100vh - 150px);
+  max-height: calc(0px + 100vh - 150px);
 
   font-family: 'sans-serif', 'Source Sans Pro';
 
