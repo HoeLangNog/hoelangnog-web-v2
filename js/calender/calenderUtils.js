@@ -8,9 +8,9 @@ export function getCalenderTemplate(){
 
       let title = '<span style="font-size: 18px;">'+schedule.title+'</span>';
       let time = '<i class="fas fa-clock schedule-item-text"></i>' +
-        moment(schedule.start.getTime()).utcOffset('+0200').format('HH:mm') +
+        moment(schedule.start.getTime()).utcOffset('+0100').format('HH:mm') +
         ' - ' +
-        moment(schedule.end.getTime()).utcOffset('+0200').format('HH:mm');
+        moment(schedule.end.getTime()).utcOffset('+0100').format('HH:mm');
       let location = '<i class="fas fa-map-marker-alt schedule-item-text"></i>' + schedule.raw.location;
       let klas;
       if(schedule.attendees > 1){
