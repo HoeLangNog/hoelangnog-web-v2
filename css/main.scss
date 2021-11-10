@@ -340,6 +340,7 @@ textarea {
 .loading-spinner{
   margin-top: 4px;
   margin-left: 5px;
+  margin-right: 5px;
   .fa-circle-notch{
     color: white;
     font-size: 20px;
@@ -353,15 +354,6 @@ textarea {
 
 .hidden-by-mouse{
   opacity: 0;
-}
-
-.hidenav-on-mouse{
-  transform: translateY(0px);
-  transition: transform 200ms linear;
-}
-
-.hiddennav-by-mouse{
-  transform: translateY(-68px);
 }
 
 ::-webkit-scrollbar {

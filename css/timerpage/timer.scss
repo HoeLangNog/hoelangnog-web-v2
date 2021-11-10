@@ -20,8 +20,15 @@
   transition: color 200ms linear;
 }
 
-.timer-main>div {
+.timer-div {
   transform: scale(1.5);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 .progress-ring {
   position: absolute;
@@ -46,59 +53,16 @@
   transform-origin: 50% 50%;
 }
 
-.overlay-buttons {
+.timer-time-text{
+  color: white;
+  font-size: 65px;
+}
+
+.groupSelector{
   position: absolute;
-  right: 20px;
   top: 80px;
-  min-height: 10px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  right: 15px;
   .selectors{
     display: flex;
   }
-  .date{
-    display: flex;
-  }
-  input, select{
-    color: whitesmoke;
-    outline: none;
-    padding: 5px;
-    border-radius: 15px;
-    background-color: #5a5a5a;
-    border: transparent solid 2px;
-    cursor: pointer;
-    &:focus {
-      border: #ffa200 solid 2px;
-    }
-
-    &[type="button"] {
-      padding: 15px;
-      border-radius: 400px;
-      width: 100%;
-      background-color: #ffa200;
-      color: #000000;
-      transition: background-color .2s linear;
-
-      &:hover {
-        background-color: #ffb03e;
-      }
-    }
-  }
-}
-
-
-.overlay-buttons>i {
-  cursor: pointer;
-  color: white;
-  font-size: 50px;
-}
-
-.overlay-buttons .options-open {
-  animation: buttons-left 1;
-}
-
-@keyframes buttons-left {
-  from {right: 20px}
-  to {right: 100px}
 }

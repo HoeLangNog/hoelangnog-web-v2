@@ -79,21 +79,18 @@ export function formatTime (date, format, utc) {
   format = format.replace(/\\(.)/g, "$1");
 
   return format;
-};
+}
 
+export function setProgress(percent) {
+  let circle = document.getElementsByClassName('progress-ring__circle').item(0);
+// window.getComputedStyle(circle);
 
-// let circle = document.getElementsByClassName('progress-ring__circle').item(0);
-// // window.getComputedStyle(circle);
-//
-// let radius = 150;
-// let circumference = radius * 2 * Math.PI;
-//
-// circle.style.strokeDasharray = `${circumference} ${circumference}`;
-// circle.style.strokeDashoffset = `${circumference}`;
-//
-// export function setProgress(percent) {
-//
-//   const offset = circumference - percent / 100 * circumference;
-//   circle.style.strokeDashoffset = `${offset}`;
-// }
+  let radius = 150;
+  let circumference = radius * 2 * Math.PI;
+
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = `${circumference}`;
+  const offset = circumference - percent / 100 * circumference;
+  circle.style.strokeDashoffset = `${offset}`;
+}
 

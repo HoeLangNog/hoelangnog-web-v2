@@ -1,67 +1,68 @@
-import {setProgress, formatTime} from './timerutils'
+import {formatTime, setProgress} from "./timerutils";
+const axios = require('axios');
 // @ts-ignore
-import * as axiosa from "axios";
-const axios = axiosa.default;
+import $ from "jquery";
 
+let gElement = document.getElementsByClassName("time-lines").item(0);
+gElement.innerHTML = "";
+let textElement = document.getElementById("timetext");
 let myStorage = window.localStorage || localStorage;
 
-//Variables used by timers globally
+let speedModeSpeed = 0;
+let speedMode = Math.random() > 0.99;
+let timer;
+
 let startTime;
 let endDate;
 
-export function loadTimerTime(groupCode){
+export function loadTimer(groupCode){
+  clearTimeout(timer);
   startTime = null;
   endDate = null;
+  $('.loading-spinner').removeClass("hidden");
 
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/unixoftoday")
     .then(response => {
-      let resObject: any = response.data;
+      let resObject = response.data;
       startTime = new Date(resObject.start * 1000);
       endDate = new Date(resObject.last * 1000);
 
-      //This starts the timer
+      $('.loading-spinner').addClass("hidden");
+      //addLessonLines(startTime, eDate)
       tickTimer();
     });
 }
 
-if(myStorage.getItem("group") != null){
-  loadTimerTime(myStorage.getItem("group"));
-}
-
 function tickTimer() {
-  let currentTime = Date.now()
-  let currentDate = new Date(currentTime);
+  let currentDate = Date.now();
+  let diff = (endDate.getTime() - speedModeSpeed) - (new Date(currentDate).getTime() -
+    new Date(currentDate).getTimezoneOffset() * 60 * 1000);
 
-  let difference = (endDate.getTime()) - (currentTime - currentDate.getTimezoneOffset() * 60000);
-
-  let timers = document.getElementsByTagName("hln-timer");
-  if (difference < 0) {
-    for (let i = 0; i < timers.length; i++) {
-      let element = timers.item(i);
-      element.setAttribute("time", "Geen les!");
-      element.setAttribute("progress", "100")
-    }
-    waitForNextTick();
+  if (diff < 0) {
+    textElement.innerText = "Geen les";
     return;
   }
 
-  let timeToDisplay = new Date(difference);
+  let now = new Date()
+  now.setTime(diff)
+  writeTime(now);
+  let totalTime = (endDate.getTime() - speedModeSpeed) - startTime.getTime();
+  let percent = 100 - (((totalTime - diff) / totalTime) * 100);
+  setProgress(percent);
 
-  let timeText = formatTime(timeToDisplay, "HH:mm:ss", true)
+  if (speedMode)
+    speedModeSpeed += 1000;
 
-  let totalTime = endDate.getTime() - startTime.getTime();
-  let percent = 100 - (((totalTime - difference) / totalTime) * 100);
-  for (let i = 0; i < timers.length; i++) {
-    let element = timers.item(i);
-    element.setAttribute("time", timeText);
-    element.setAttribute("progress", `${percent}`);
-  }
-
-  waitForNextTick();
+  timer = setTimeout(() => {
+    //recheck();
+    tickTimer();
+  }, speedMode ? 1 : 100);
 }
 
-function waitForNextTick() {
-  setTimeout(() => {
-    tickTimer();
-  }, 100);
+function writeTime(date: Date) {
+  textElement.innerText = formatTime(date, "HH:mm:ss", true)
+}
+
+if(myStorage.getItem("group") != null){
+  loadTimer(myStorage.getItem("group"));
 }
