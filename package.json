@@ -1,12 +1,11 @@
 {
-  "name": " ",
+  "name": "hoelangnog",
   "version": "0.0.1",
   "description": "",
-  "keywords": "",
-  "license": "",
-  "author": "",
+  "keywords": [],
+  "license": "",  "author": "",
   "scripts": {
-    "build": "parcel build index.html lokalen.html calender.html",
+    "build": "parcel build --no-minify index.html lokalen.html calender.html",
     "dev": "parcel index.html lokalen.html calender.html --open",
     "start": "npm run build && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
