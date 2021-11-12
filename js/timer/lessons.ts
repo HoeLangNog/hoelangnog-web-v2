@@ -50,7 +50,7 @@ export function loadToday(groupCode){
   data = null;
   linesList.innerHTML = "";
 
-  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/today")
+  axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?today")
     .then(response => {
       data = response.data;
       console.log(data);
