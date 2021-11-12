@@ -6,7 +6,7 @@
   width: 100vw;
   min-height: calc(100vh - 100px);
   background-color: #222222;
-  font-family: 'sans-serif', 'Source Sans Pro';
+  font-family: 'Source Sans Pro', 'sans-serif';
 }
 
 body {
@@ -22,8 +22,7 @@ body {
   grid-template-columns: 1fr auto;
   gap: 20px;
   max-height: calc(0px + 100vh - 150px);
-
-  font-family: 'sans-serif', 'Source Sans Pro';
+  font-family: 'Source Sans Pro', 'sans-serif';
 
   .form-group {
     z-index: 10;
