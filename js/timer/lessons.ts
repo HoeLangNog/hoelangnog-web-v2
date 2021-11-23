@@ -9,12 +9,12 @@ function addLessonLines(startTime, endTime) {
     return;
 
   data.forEach((item) => {
-    let diff1 = endTime.getTime() - new Date(item.time * 1000).getTime();
+    let diff1 = endTime.getTime() - new Date(item.start_time * 1000).getTime();
     if (diff1 < 0) {
       return;
     }
 
-    let diff2 = endTime.getTime() - new Date(item.timeEnd * 1000).getTime();
+    let diff2 = endTime.getTime() - new Date(item.end_time * 1000).getTime();
     if (diff2 < 0) {
       return;
     }
@@ -53,10 +53,9 @@ export function loadToday(groupCode){
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?today")
     .then(response => {
       data = response.data;
-      console.log(data);
       data.forEach((item) => {
-        let startTime = new Date(item.time * 1000);
-        let endDate = new Date(item.timeEnd * 1000);
+        let startTime = new Date(item.start_time * 1000);
+        let endDate = new Date(item.end_time * 1000);
 
         addLessonLines(startTime, endDate);
       });
