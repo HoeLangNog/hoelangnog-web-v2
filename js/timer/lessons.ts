@@ -26,12 +26,12 @@ function addLessonLines(startTime, endTime) {
     let percent2 = 100 - (((totalTime - diff2) / totalTime) * 100);
     let rotation2 = 360 / 100 * percent2;
 
-    addElement(rotation1, "#05ff00"); //Start line
-    addElement(rotation2 + 2, "#ff1100"); //End line
+    addElement(rotation1, "#05ff00", "Begin "+item.name); //Start line
+    addElement(rotation2 + 2, "#ff1100", "Einde "+item.name); //End line
   });
 }
 
-function addElement(rotation, color) {
+function addElement(rotation, color, title) {
   let lineNode = document.createElement("line");
   lineNode.setAttribute("x1", "153");
   lineNode.setAttribute("y1", "153");
@@ -41,6 +41,10 @@ function addElement(rotation, color) {
   lineNode.setAttribute("stroke-width", "6");
   lineNode.setAttribute("stroke", color);
   lineNode.setAttribute("transform", "rotate("+rotation+" 153 153)");
+
+  let titleNode = document.createElement("title");
+  titleNode.text = title;
+  lineNode.append(titleNode);
 
   linesList.append(lineNode);
   linesList.innerHTML += "";
@@ -53,12 +57,15 @@ export function loadToday(groupCode){
   axios.get("https://api.hoelangnog.xyz/groups/"+groupCode+"/schedule?today")
     .then(response => {
       data = response.data;
-      data.forEach((item) => {
-        let startTime = new Date(item.start_time * 1000);
-        let endDate = new Date(item.end_time * 1000);
 
-        addLessonLines(startTime, endDate);
-      });
+      axios.get("https://api.hoelangnog.xyz/groups/" + groupCode + "/unixoftoday")
+        .then(response => {
+          let resObject = response.data;
+          let startDate = new Date(resObject.start * 1000);
+          let endDate = new Date(resObject.last * 1000);
+
+          addLessonLines(startDate, endDate);
+        });
     });
 }
 
