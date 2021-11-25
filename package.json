@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "keywords": [],
-  "license": "",  "author": "",
+  "license": "",
+  "author": "",
   "scripts": {
     "build": "parcel build --no-minify index.html lokalen.html calender.html",
     "dev": "parcel index.html lokalen.html calender.html --open",
@@ -17,12 +18,14 @@
   },
   "dependencies": {
     "@mobiscroll/javascript-lite": "^4.10.9",
+    "@sweetalert2/theme-dark": "^5.0.8",
     "axios": "^0.22.0",
     "firebase": "^9.1.3",
     "jquery": "^3.6.0",
     "lit": "^2.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
+    "sweetalert2": "^11.2.0",
     "tui-calendar": "^1.14.1",
     "tui-date-picker": "^4.3.1"
   }

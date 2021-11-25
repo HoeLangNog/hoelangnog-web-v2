@@ -118,3 +118,10 @@ html, body{
   color: #cbcbcb;
   font-size: 9px;
 }
+
+.swal2-popup{
+  background-color: #222!important;
+  .swal2-title, .swal2-html-container{
+    color: white!important;
+  }
+}

@@ -9,5 +9,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="analytics" level="application" />
+    <orderEntry type="library" name="tui-calendar" level="application" />
+    <orderEntry type="library" name="41c28e8a2f" level="application" />
+    <orderEntry type="library" name="select2" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
