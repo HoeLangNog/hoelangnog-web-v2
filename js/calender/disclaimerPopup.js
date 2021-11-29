@@ -5,11 +5,11 @@ let accepted;
 if(myStorage.getItem("disclaimerAccepted") != null){
   accepted = myStorage.getItem("disclaimerAccepted");
 }else{
-  myStorage.setItem("disclaimerAccepted", false);
-  accepted = false;
+  myStorage.setItem("disclaimerAccepted", "false");
+  accepted = "false";
 }
 
-if (!accepted){
+if (accepted === "false"){
   Swal.fire({
     icon: 'warning',
       title: 'Disclaimer!',
@@ -18,6 +18,6 @@ if (!accepted){
       allowEscapeKey: false,
       allowEnterKey: false
   }).then((result) => {
-    myStorage.setItem("disclaimerAccepted", true);
+    myStorage.setItem("disclaimerAccepted", "true");
   });
 }

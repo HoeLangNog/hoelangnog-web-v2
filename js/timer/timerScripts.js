@@ -19,3 +19,4 @@ $(document).ready(function () {
     $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');
   });
 });
+
