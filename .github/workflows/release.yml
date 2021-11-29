@@ -5,7 +5,8 @@ name: Node.js CI
 
 on:
   release:
-    branches: [ main ]
+    types: # This configuration does not affect the page_build event above
+      - created
   workflow_dispatch: null
 
 jobs:
