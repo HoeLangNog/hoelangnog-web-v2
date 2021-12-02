@@ -22,10 +22,12 @@
     "axios": "^0.22.0",
     "firebase": "^9.1.3",
     "jquery": "^3.6.0",
+    "jquery-particles": "^1.37.5",
     "lit": "^2.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "sweetalert2": "^11.2.0",
+    "tsparticles": "^1.37.5",
     "tui-calendar": "^1.14.1",
     "tui-date-picker": "^4.3.1"
   }

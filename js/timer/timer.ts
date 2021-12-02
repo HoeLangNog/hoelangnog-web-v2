@@ -2,6 +2,7 @@ import {formatTime, setProgress} from "./timerutils";
 const axios = require('axios');
 // @ts-ignore
 import $ from "jquery";
+import {random} from './particles';
 
 let gElement = document.getElementsByClassName("time-lines").item(0);
 gElement.innerHTML = "";
@@ -38,8 +39,9 @@ function tickTimer() {
   let diff = (endDate.getTime() - speedModeSpeed) - (new Date(currentDate).getTime() -
     new Date(currentDate).getTimezoneOffset() * 60 * 1000);
 
-  if (diff < 0) {
+  if (diff < 9999999999) {
     textElement.innerText = "Geen les";
+    random();
     return;
   }
 

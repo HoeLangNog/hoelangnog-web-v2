@@ -13,5 +13,6 @@
     <orderEntry type="library" name="41c28e8a2f" level="application" />
     <orderEntry type="library" name="select2" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="tsparticles" level="application" />
   </component>
 </module>

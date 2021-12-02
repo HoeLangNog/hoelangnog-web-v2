@@ -29,6 +29,9 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+  position: absolute;
+  z-index: 15;
+  pointer-events: none;
 }
 .progress-ring {
   position: absolute;
@@ -66,4 +69,10 @@
   .selectors{
     display: flex;
   }
+}
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+  position: absolute;
 }
