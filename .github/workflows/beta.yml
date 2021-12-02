@@ -33,8 +33,8 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ftp.fabiandingemans.nl
-        username: ${{ secrets.PROD_USER }}
-        password: ${{ secrets.PROD_PASSWORD }}
+        username: ${{ secrets.BETA_USER }}
+        password: ${{ secrets.BETA_PASSWORD }}
         local-dir: "./dist/"
         server-dir: "./public_html/"
         dangerous-clean-slate: false
