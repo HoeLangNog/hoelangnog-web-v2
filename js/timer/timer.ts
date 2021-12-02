@@ -39,10 +39,17 @@ function tickTimer() {
   let diff = (endDate.getTime() - speedModeSpeed) - (new Date(currentDate).getTime() -
     new Date(currentDate).getTimezoneOffset() * 60 * 1000);
 
-  if (diff < 9999999999) {
+  diff = diff - (60 * 1000) * 13;
+
+  if (diff < 0) {
     textElement.innerText = "Geen les";
     random();
     return;
+  }
+
+  if (diff > 0 && diff < 60000){
+    console.log("set font size")
+    textElement.style.fontSize = "150px";
   }
 
   let now = new Date()
@@ -62,7 +69,11 @@ function tickTimer() {
 }
 
 function writeTime(date: Date) {
-  textElement.innerText = formatTime(date, "HH:mm:ss", true)
+  if (date.getHours() == 1 && date.getMinutes() == 0){
+    textElement.innerText = formatTime(date, "ss", true);
+  }else{
+    textElement.innerText = formatTime(date, "HH:mm:ss", true);
+  }
 }
 
 if(myStorage.getItem("group") != null){
