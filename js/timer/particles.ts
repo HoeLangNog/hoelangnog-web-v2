@@ -347,17 +347,19 @@ function snow(){
     "interactivity": {
       "detect_on": "canvas",
       "events": {
-        "onclick": { "enable": true, "mode": "push" },
+        "onDiv": {
+          "elementId": "ring-svg",
+          "enable": true,
+          "mode": "repulse"
+        },
         "onhover": {
           "enable": true,
-          "mode": "repulse",
-          "parallax": { "enable": false, "force": 60, "smooth": 10 }
+          "mode": "repulse"
         },
         "resize": true
       },
       "modes": {
-        "push": { "quantity": 4 },
-        "attract": { "distance": 100, "duration": 0.4, "factor": 5 }
+        "repulse": { "distance": 200, "duration": 0.4, "factor": 5 }
       }
     },
     "particles": {
@@ -416,7 +418,7 @@ function snow(){
           "speed": 40,
           "minimumValue": 0.1
         }
-      }
+      },
     }
   });
 }
@@ -590,20 +592,23 @@ export function random(){
   if (triggerMeme()){
     console.log("rickroll");
   }
-  let randomFunction = get_random(particleEffects);
-  if (randomFunction === "confetti"){
-    confetti();
-  }
-  if (randomFunction === "nyanCat"){
-    nyanCat();
-  }
-  if (randomFunction === "trails"){
-    trails();
-  }
-  if (randomFunction === "snow"){
-    snow();
-  }
-  if (randomFunction === "fireworks"){
-    fireworks();
-  }
+  snow();
+
+  // let randomFunction = get_random(particleEffects);
+  // if (randomFunction === "confetti"){
+  //   confetti();
+  // }
+  // if (randomFunction === "nyanCat"){
+  //   nyanCat();
+  // }
+  // if (randomFunction === "trails"){
+  //   trails();
+  // }
+  // if (randomFunction === "snow"){
+  //   snow();
+  // }
+  // if (randomFunction === "fireworks"){
+  //   fireworks();
+  // }
+
 }
