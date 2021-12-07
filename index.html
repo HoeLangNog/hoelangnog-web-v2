@@ -30,16 +30,24 @@
 </head>
 
 <body>
-  <nav class="navbar hidenav-on-mouse">
+
+  <nav class="navbar">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="./"><img src="./img/clock.png" alt="Xedule Tools"></a>
       </div>
       <div class="nav navbar-nav navbar-right">
-        <a href="./" class="active"><span>Home</span></a>
-        <a href="./lokalen"><span>Lokalen</span></a>
-        <a href="./calender"><span>Calender</span></a>
-        <a href="https://discord.gg/duVeYWtN3s" target="_blank"><span>Discord</span></a>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="./" class="active"><span>Home</span></a>
+            <a href="./lokalen"><span>Lokalen</span></a>
+            <a href="./calender"><span>Calender</span></a>
+            <a href="https://discord.gg/duVeYWtN3s" target="_blank"><span>Discord</span></a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
