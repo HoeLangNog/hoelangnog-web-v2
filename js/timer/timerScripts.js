@@ -19,5 +19,19 @@ $(document).ready(function () {
     $('input.select2-search__field').attr('placeholder', 'Zoek naar een groep');
   });
 
+  let timerDiv = document.getElementById("timer-div");
+  $(window).on('resize', function(){
+    let scaleX = Math.max(Math.min(window.innerWidth / 400, 1.8), 0.68);
+    let scaleY = Math.max(Math.min(window.innerHeight / 450, 20), 0);
+
+    console.log(scaleX, scaleY)
+
+    if (scaleY > scaleX){
+      timerDiv.style.transform='scale('+scaleX+')';
+    }else{
+      timerDiv.style.transform='scale('+scaleY+')';
+    }
+  });
+
 });
 
