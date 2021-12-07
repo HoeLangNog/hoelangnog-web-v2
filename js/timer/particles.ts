@@ -1,5 +1,5 @@
 // @ts-ignore
-import {tsParticles} from "tsParticles";
+import {tsParticles} from "tsparticles";
 
 function confetti(){
   tsParticles.load('tsparticles', {
@@ -588,6 +588,7 @@ function triggerMeme() {
 let particleEffects = [
   'confetti','nyanCat', 'trails', 'snow', 'fireworks'
 ];
+confetti();
 export function random(){
   if (triggerMeme()){
     console.log("rickroll");
