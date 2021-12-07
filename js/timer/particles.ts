@@ -592,23 +592,22 @@ export function random(){
   if (triggerMeme()){
     console.log("rickroll");
   }
-  snow();
 
-  // let randomFunction = get_random(particleEffects);
-  // if (randomFunction === "confetti"){
-  //   confetti();
-  // }
-  // if (randomFunction === "nyanCat"){
-  //   nyanCat();
-  // }
-  // if (randomFunction === "trails"){
-  //   trails();
-  // }
-  // if (randomFunction === "snow"){
-  //   snow();
-  // }
-  // if (randomFunction === "fireworks"){
-  //   fireworks();
-  // }
+  let randomFunction = get_random(particleEffects);
+  if (randomFunction === "confetti"){
+    confetti();
+  }
+  if (randomFunction === "nyanCat"){
+    nyanCat();
+  }
+  if (randomFunction === "trails"){
+    trails();
+  }
+  if (randomFunction === "snow"){
+    snow();
+  }
+  if (randomFunction === "fireworks"){
+    fireworks();
+  }
 
 }

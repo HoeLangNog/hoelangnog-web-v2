@@ -24,8 +24,6 @@ $(document).ready(function () {
     let scaleX = Math.max(Math.min(window.innerWidth / 400, 1.8), 0.68);
     let scaleY = Math.max(Math.min(window.innerHeight / 450, 20), 0);
 
-    console.log(scaleX, scaleY)
-
     if (scaleY > scaleX){
       timerDiv.style.transform='scale('+scaleX+')';
     }else{
