@@ -21,6 +21,11 @@ $(document).ready(function () {
 
   let timerDiv = document.getElementById("timer-div");
   $(window).on('resize', function(){
+    resizeTimer();
+  });
+
+  resizeTimer();
+  function resizeTimer(){
     let scaleX = Math.max(Math.min(window.innerWidth / 400, 1.8), 0.68);
     let scaleY = Math.max(Math.min(window.innerHeight / 450, 20), 0);
 
@@ -29,7 +34,7 @@ $(document).ready(function () {
     }else{
       timerDiv.style.transform='scale('+scaleY+')';
     }
-  });
+  }
 
 });
 

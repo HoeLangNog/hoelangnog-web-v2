@@ -588,7 +588,6 @@ function triggerMeme() {
 let particleEffects = [
   'confetti','nyanCat', 'trails', 'snow', 'fireworks'
 ];
-confetti();
 export function random(){
   if (triggerMeme()){
     console.log("rickroll");
