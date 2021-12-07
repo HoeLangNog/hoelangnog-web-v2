@@ -39,8 +39,6 @@ function tickTimer() {
   let diff = (endDate.getTime() - speedModeSpeed) - (new Date(currentDate).getTime() -
     new Date(currentDate).getTimezoneOffset() * 60 * 1000);
 
-  diff = diff - (60 * 1000) * 13;
-
   if (diff < 0) {
     textElement.innerText = "Geen les";
     random();
