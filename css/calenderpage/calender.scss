@@ -44,6 +44,13 @@ html, body{
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .selectors{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
 .menu-btn{
   height: 30px;
   background-color: #222222;
@@ -73,6 +80,13 @@ html, body{
       cursor: not-allowed;
     }
   }
+}
+
+.menu-disclaimer-text{
+  color: #979797;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .menu-date-text{
