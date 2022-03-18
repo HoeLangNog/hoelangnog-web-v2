@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   release:
-    types: # This configuration does not affect the page_build event above
+    types: # This configuration does not affect the page_build event above 
       - created
   workflow_dispatch: null
 
@@ -35,6 +35,6 @@ jobs:
         username: ${{ secrets.PROD_USER }}
         password: ${{ secrets.PROD_PASSWORD }}
         local-dir: "./dist/"
-        server-dir: "./"
+        server-dir: "./public_html/"
         dangerous-clean-slate: false
         exclude: .htaccess
