@@ -31,10 +31,10 @@ jobs:
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ftp.fabiandingemans.nl
+        server: 194.163.180.83
         username: ${{ secrets.PROD_USER }}
         password: ${{ secrets.PROD_PASSWORD }}
         local-dir: "./dist/"
-        server-dir: "./public_html/"
+        server-dir: "./"
         dangerous-clean-slate: false
         exclude: .htaccess
