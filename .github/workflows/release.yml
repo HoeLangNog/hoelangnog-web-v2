@@ -20,7 +20,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -28,12 +30,13 @@ jobs:
 
     - run: npm install --package-lock
     - run: npm run build --if-present
+    
     - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: srv1.fabiandingemans.nl
-        username: ${{ secrets.PROD_USER }}
-        password: ${{ secrets.PROD_PASSWORD }}
+        username: ${{ secrets.prod_ftp_user }}
+        password: ${{ secrets.prod_ftp_pass }}
         local-dir: "./dist/"
         server-dir: "./public_html/"
         dangerous-clean-slate: false
