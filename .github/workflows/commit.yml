@@ -41,6 +41,6 @@ jobs:
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_pass }}
         local-dir: "./dist/"
-        server-dir: "./beta/"
+        server-dir: "./test/"
         dangerous-clean-slate: false
         exclude: .htaccess
