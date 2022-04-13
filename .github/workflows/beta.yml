@@ -29,12 +29,13 @@ jobs:
 
     - run: npm install --package-lock
     - run: npm run build --if-present
+    
     - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ftp.fabiandingemans.nl
-        username: ${{ secrets.BETA_USER }}
-        password: ${{ secrets.BETA_PASSWORD }}
+        server: srv1.fabiandingemans.nl
+        username: ${{ secrets.beta_ftp_user }}
+        password: ${{ secrets.beta_ftp_pass }}
         local-dir: "./dist/"
         server-dir: "./public_html/"
         dangerous-clean-slate: false
