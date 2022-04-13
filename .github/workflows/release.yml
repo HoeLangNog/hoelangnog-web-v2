@@ -38,7 +38,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: srv1.fabiandingemans.nl
-        username: ${{ secrets.ftp_user }}
+        username: hoelang
         password: ${{ secrets.ftp_pass }}
         local-dir: "./dist/"
         server-dir: "./public_html/"
