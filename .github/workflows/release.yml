@@ -31,7 +31,7 @@ jobs:
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ftp.fabiandingemans.nl
+        server: srv1.fabiandingemans.nl
         username: ${{ secrets.PROD_USER }}
         password: ${{ secrets.PROD_PASSWORD }}
         local-dir: "./dist/"
